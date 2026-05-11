@@ -1,0 +1,6 @@
+configuration\Conexion.class
+ui\Vistas.class
+logic\Validaciones.class
+model\Clases.class
+ui\reporte_general.class
+com\mycompany\sistema\condominio\vista\verde\SistemaCondominioVistaVerde.class
