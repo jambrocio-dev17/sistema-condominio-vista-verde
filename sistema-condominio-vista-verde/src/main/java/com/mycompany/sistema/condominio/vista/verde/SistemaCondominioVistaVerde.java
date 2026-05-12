@@ -13,9 +13,4 @@ public class SistemaCondominioVistaVerde {
         lg.setVisible(true);
 
     }
-<<<<<<< HEAD
 }
-=======
-}
-
->>>>>>> feature/estado-cuenta

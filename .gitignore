@@ -1,6 +1,10 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /sistema-condominio-vista-verde/target/
 =======
 target/
 *.class
 >>>>>>> feature/estado-cuenta
+=======
+/sistema-condominio-vista-verde/target/
+>>>>>>> feature/reporte-general
