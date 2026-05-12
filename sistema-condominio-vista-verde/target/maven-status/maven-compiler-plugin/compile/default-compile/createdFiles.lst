@@ -1,22 +1,19 @@
-<<<<<<< HEAD
+ui\RegistroPropietario.class
 ui\PanelRedondeado.class
 ui\TextFieldRedondeado.class
 ui\BotonRedondeado.class
-ui\Vistas.class
-model\Clases.class
-com\mycompany\sistema\condominio\vista\verde\SistemaCondominioVistaVerde.class
-ui\Login.class
-ui\TextFieldRedondeado$1.class
-ui\PasswordFieldRedondeado.class
-ui\PasswordFieldRedondeado$1.class
-configuration\Conexion.class
-ui\PanelSoloBorde.class
-logic\Validaciones.class
-=======
-ui\ConfiguracionCuota$1.class
-configuration\Conexion.class
-logic\Validaciones.class
 model\Clases.class
 ui\ConfiguracionCuota.class
 com\mycompany\sistema\condominio\vista\verde\SistemaCondominioVistaVerde.class
->>>>>>> e673a26e76a1ed5c0e7847284f1d482bf58df487
+ui\Login.class
+ui\ConfiguracionCuota$1.class
+ui\TextFieldRedondeado$1.class
+ui\PasswordFieldRedondeado.class
+ui\RegistroPago.class
+ui\menuPrincipal.class
+ui\PasswordFieldRedondeado$1.class
+ui\FondoVerde.class
+configuration\Conexion.class
+ui\PanelSoloBorde.class
+logic\Validaciones.class
+ui\RegistroPago$1.class
