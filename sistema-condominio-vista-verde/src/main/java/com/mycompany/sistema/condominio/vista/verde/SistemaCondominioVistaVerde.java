@@ -4,13 +4,15 @@
 
 package com.mycompany.sistema.condominio.vista.verde;
 
-/**
- *
- * @author Josue Ambrocio
- */
+import ui.Login;
+
 public class SistemaCondominioVistaVerde {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        
+        Login lg = new Login();
+        lg.setVisible(true);
+
     }
 }
+
