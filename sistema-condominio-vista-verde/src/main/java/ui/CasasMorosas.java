@@ -8,14 +8,14 @@ package ui;
  *
  * @author Josue Ambrocio
  */
-public class Vistas extends javax.swing.JFrame {
+public class CasasMorosas extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Vistas.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CasasMorosas.class.getName());
 
     /**
      * Creates new form Vistas
      */
-    public Vistas() {
+    public CasasMorosas() {
         initComponents();
     }
 
@@ -66,7 +66,7 @@ public class Vistas extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Vistas().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new CasasMorosas().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
