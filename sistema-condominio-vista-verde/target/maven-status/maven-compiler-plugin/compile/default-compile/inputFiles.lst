@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\com\mycompany\sistema\condominio\vista\verde\SistemaCondominioVistaVerde.java
 C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\configuration\Conexion.java
 C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\logic\Validaciones.java
@@ -9,3 +10,10 @@ C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\u
 C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\PasswordFieldRedondeado.java
 C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\TextFieldRedondeado.java
 C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\Vistas.java
+=======
+C:\Users\elena\OneDrive\Documentos 1\NetBeansProjects\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\com\mycompany\sistema\condominio\vista\verde\SistemaCondominioVistaVerde.java
+C:\Users\elena\OneDrive\Documentos 1\NetBeansProjects\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\configuration\Conexion.java
+C:\Users\elena\OneDrive\Documentos 1\NetBeansProjects\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\logic\Validaciones.java
+C:\Users\elena\OneDrive\Documentos 1\NetBeansProjects\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\model\Clases.java
+C:\Users\elena\OneDrive\Documentos 1\NetBeansProjects\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\ConfiguracionCuota.java
+>>>>>>> e673a26e76a1ed5c0e7847284f1d482bf58df487

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ui\PanelRedondeado.class
 ui\TextFieldRedondeado.class
 ui\BotonRedondeado.class
@@ -11,3 +12,11 @@ ui\PasswordFieldRedondeado$1.class
 configuration\Conexion.class
 ui\PanelSoloBorde.class
 logic\Validaciones.class
+=======
+ui\ConfiguracionCuota$1.class
+configuration\Conexion.class
+logic\Validaciones.class
+model\Clases.class
+ui\ConfiguracionCuota.class
+com\mycompany\sistema\condominio\vista\verde\SistemaCondominioVistaVerde.class
+>>>>>>> e673a26e76a1ed5c0e7847284f1d482bf58df487
