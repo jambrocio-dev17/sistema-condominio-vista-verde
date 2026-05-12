@@ -1,3 +1,6 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
 package com.mycompany.sistema.condominio.vista.verde;
 
 import ui.Login;
