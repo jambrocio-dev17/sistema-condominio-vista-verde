@@ -1,4 +1,3 @@
-
 package com.mycompany.sistema.condominio.vista.verde;
 
 import ui.Login;
