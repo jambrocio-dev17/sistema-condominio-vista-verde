@@ -81,7 +81,7 @@
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ui.PanelRedondeado(150)"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new components.PanelRedondeado(150)"/>
           </AuxValues>
 
           <Layout>
@@ -104,7 +104,7 @@
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ui.PanelRedondeado(150)"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new components.PanelRedondeado(150)"/>
           </AuxValues>
 
           <Layout>
@@ -145,7 +145,7 @@
           <SubComponents>
             <Container class="javax.swing.JPanel" name="jPanel5">
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ui.PanelSoloBorde(30, new java.awt.Color(102, 255, 102), 2)"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new components.PanelSoloBorde(30, new java.awt.Color(102, 255, 102), 2)"/>
               </AuxValues>
 
               <Layout>
@@ -231,7 +231,7 @@
               <SubComponents>
                 <Component class="javax.swing.JTextField" name="jTextField1">
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ui.PasswordFieldRedondeado(15, &quot;Ingrese su contrase&#xf1;a&quot;)"/>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new components.PasswordFieldRedondeado(15, &quot;Ingrese su contrase&#xf1;a&quot;)"/>
                   </AuxValues>
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextField2">
@@ -239,7 +239,7 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField2ActionPerformed"/>
                   </Events>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ui.TextFieldRedondeado(15, &quot;Ingrese su usuario&quot;)"/>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new TextFieldRedondeado(15, &quot;Ingrese su usuario&quot;)"/>
                   </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel1">
@@ -309,8 +309,11 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Ingresar al Sistema"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                  </Events>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ui.BotonRedondeado(20)"/>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new components.BotonRedondeado(20)"/>
                   </AuxValues>
                 </Component>
                 <Component class="javax.swing.JSeparator" name="jSeparator1">
