@@ -3,7 +3,6 @@
  */
 
 package com.mycompany.sistema.condominio.vista.verde;
-import ui.menuPrincipal;
 
 /**
  *
@@ -12,8 +11,6 @@ import ui.menuPrincipal;
 public class SistemaCondominioVistaVerde {
 
     public static void main(String[] args) {
-        menuPrincipal menu = new menuPrincipal();
-        menu.setLocationRelativeTo(null);
-        menu.setVisible(true);
+        System.out.println("Hello World!");
     }
 }
