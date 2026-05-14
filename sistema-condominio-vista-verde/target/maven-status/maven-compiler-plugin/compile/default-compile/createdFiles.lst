@@ -1,0 +1,5 @@
+configuration\Conexion.class
+ui\CasasMorosas.class
+logic\Validaciones.class
+model\Clases.class
+com\mycompany\sistema\condominio\vista\verde\SistemaCondominioVistaVerde.class
