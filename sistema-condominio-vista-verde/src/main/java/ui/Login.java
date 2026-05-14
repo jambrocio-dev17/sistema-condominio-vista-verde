@@ -4,17 +4,22 @@
  */
 package ui;
 
+import components.BotonRedondeado;
+import components.PanelRedondeado;
+import components.PanelSoloBorde;
+import components.PasswordFieldRedondeado;
+import components.TextFieldRedondeado;
+
 /**
  *
  * @author adolf
  */
 public class Login extends javax.swing.JFrame {
     
+    
+    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Login.class.getName());
-
-    /**
-     * Creates new form Login
-     */
+    
     public Login() {
         initComponents();
     }
@@ -29,19 +34,19 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new ui.PanelRedondeado(150);
-        jPanel3 = new ui.PanelRedondeado(150);
+        jPanel2 = new components.PanelRedondeado(150);
+        jPanel3 = new components.PanelRedondeado(150);
         jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new ui.PanelSoloBorde(30, new java.awt.Color(102, 255, 102), 2);
-        jTextField1 = new ui.PasswordFieldRedondeado(15, "Ingrese su contraseña");
-        jTextField2 = new ui.TextFieldRedondeado(15, "Ingrese su usuario");
+        jPanel5 = new components.PanelSoloBorde(30, new java.awt.Color(102, 255, 102), 2);
+        jTextField1 = new components.PasswordFieldRedondeado(15, "Ingrese su contraseña");
+        jTextField2 = new TextFieldRedondeado(15, "Ingrese su usuario");
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new ui.BotonRedondeado(20);
+        jButton1 = new components.BotonRedondeado(20);
         jSeparator1 = new javax.swing.JSeparator();
         jToggleButton1 = new javax.swing.JToggleButton();
 
@@ -101,6 +106,7 @@ public class Login extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Ingresar al Sistema");
+        jButton1.addActionListener(this::jButton1ActionPerformed);
 
         jSeparator1.setForeground(new java.awt.Color(0, 204, 102));
 
@@ -251,6 +257,10 @@ public class Login extends javax.swing.JFrame {
             campoContrasena.setEchoChar('•'); // Oculta la contraseña (o usa '*')
         }
     }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
