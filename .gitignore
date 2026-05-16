@@ -1,1 +1,6 @@
+<<<<<<< HEAD
 /sistema-condominio-vista-verde/target/
+=======
+target/
+*.class
+>>>>>>> feature/estado-cuenta
