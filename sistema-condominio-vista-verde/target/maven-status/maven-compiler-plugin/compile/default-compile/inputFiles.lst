@@ -1,19 +1,17 @@
-<<<<<<< HEAD
 C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\com\mycompany\sistema\condominio\vista\verde\SistemaCondominioVistaVerde.java
+C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\components\BotonRedondeado.java
+C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\components\FondoVerde.java
+C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\components\PanelRedondeado.java
+C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\components\PanelSoloBorde.java
+C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\components\PasswordFieldRedondeado.java
+C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\components\TextFieldRedondeado.java
 C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\configuration\Conexion.java
 C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\logic\Validaciones.java
 C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\model\Clases.java
-C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\BotonRedondeado.java
+C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\ConfiguracionCuota.java
+C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\estadoCuenta.java
 C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\Login.java
-C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\PanelRedondeado.java
-C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\PanelSoloBorde.java
-C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\PasswordFieldRedondeado.java
-C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\TextFieldRedondeado.java
-C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\Vistas.java
-=======
-C:\Users\elena\OneDrive\Documentos 1\NetBeansProjects\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\com\mycompany\sistema\condominio\vista\verde\SistemaCondominioVistaVerde.java
-C:\Users\elena\OneDrive\Documentos 1\NetBeansProjects\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\configuration\Conexion.java
-C:\Users\elena\OneDrive\Documentos 1\NetBeansProjects\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\logic\Validaciones.java
-C:\Users\elena\OneDrive\Documentos 1\NetBeansProjects\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\model\Clases.java
-C:\Users\elena\OneDrive\Documentos 1\NetBeansProjects\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\ConfiguracionCuota.java
->>>>>>> e673a26e76a1ed5c0e7847284f1d482bf58df487
+C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\menuPrincipal.java
+C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\RegistroPago.java
+C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\RegistroPropietario.java
+C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\reporte_general.java

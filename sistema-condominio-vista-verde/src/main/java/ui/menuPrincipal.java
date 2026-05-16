@@ -17,6 +17,7 @@ public class menuPrincipal extends javax.swing.JFrame {
      */
     public menuPrincipal() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -138,6 +139,7 @@ public class menuPrincipal extends javax.swing.JFrame {
 
         btnEstadoCuenta.setBackground(new java.awt.Color(240, 250, 243));
         btnEstadoCuenta.setText("Estado de Cuenta");
+        btnEstadoCuenta.addActionListener(this::btnEstadoCuentaActionPerformed);
         pnlTarjeta.add(btnEstadoCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 220, 235, 70));
 
         btnReporteGeneral.setBackground(new java.awt.Color(240, 250, 243));
@@ -215,23 +217,39 @@ public class menuPrincipal extends javax.swing.JFrame {
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
         // TODO add your handling code here:
+        new Login().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnRegistroPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroPagoActionPerformed
         // TODO add your handling code here:
+        new RegistroPago().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnRegistroPagoActionPerformed
 
     private void btnConfigurarCuotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigurarCuotaActionPerformed
         // TODO add your handling code here:
+        new ConfiguracionCuota().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnConfigurarCuotaActionPerformed
 
     private void btnReporteGeneralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteGeneralActionPerformed
         // TODO add your handling code here:
+        new reporte_general().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnReporteGeneralActionPerformed
 
     private void btnRegistroPropietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroPropietarioActionPerformed
         // TODO add your handling code here:
+        new RegistroPropietario().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnRegistroPropietarioActionPerformed
+
+    private void btnEstadoCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstadoCuentaActionPerformed
+        // TODO add your handling code here:
+        new estadoCuenta().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnEstadoCuentaActionPerformed
 
     /**
      * @param args the command line arguments

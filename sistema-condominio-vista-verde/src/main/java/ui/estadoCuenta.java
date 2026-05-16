@@ -17,6 +17,7 @@ public class estadoCuenta extends javax.swing.JFrame {
      */
     public estadoCuenta() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -213,6 +214,7 @@ public class estadoCuenta extends javax.swing.JFrame {
 
         jButton1.setForeground(new java.awt.Color(33, 33, 33));
         jButton1.setText("← Volver al Inicio");
+        jButton1.addActionListener(this::jButton1ActionPerformed);
 
         jLabel5.setForeground(new java.awt.Color(97, 97, 97));
         jLabel5.setText("Inicio › Estado de Cuenta");
@@ -309,6 +311,12 @@ public class estadoCuenta extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        new menuPrincipal().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

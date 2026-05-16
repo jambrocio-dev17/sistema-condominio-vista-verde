@@ -9,6 +9,7 @@ import components.PanelRedondeado;
 import components.PanelSoloBorde;
 import components.PasswordFieldRedondeado;
 import components.TextFieldRedondeado;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +23,7 @@ public class Login extends javax.swing.JFrame {
     
     public Login() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -260,6 +262,21 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        String usuario = jTextField2.getText().trim();
+        String contrasena = jTextField1.getText().trim();
+
+        System.out.println("Usuario: " + usuario);
+        System.out.println("Contrasena: " + contrasena);
+
+        if (usuario.equals("admin") && contrasena.equals("1234")) {
+            new menuPrincipal().setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this,
+                "Usuario o contraseña incorrectos",
+                "Error de acceso",
+                JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
