@@ -17,6 +17,8 @@ public class CasasMorosas extends javax.swing.JFrame {
      */
     public CasasMorosas() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        jButton1.addActionListener(this::jButton1ActionPerformed);
     }
 
     /**
@@ -51,8 +53,8 @@ public class CasasMorosas extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable() {
-            @Override
-            public java.awt.Component prepareRenderer(javax.swing.table.TableCellRenderer renderer, int row, int column) {
+    @Override
+    public java.awt.Component prepareRenderer(javax.swing.table.TableCellRenderer renderer, int row, int column) {
             java.awt.Component c = super.prepareRenderer(renderer, row, column);
 
             // Si la fila no está seleccionada, aplicamos el color alternado
@@ -65,6 +67,7 @@ public class CasasMorosas extends javax.swing.JFrame {
 
             return c;
         }
+    
     };
     jPanel1 = new javax.swing.JPanel();
     jLabel6 = new javax.swing.JLabel();
@@ -194,6 +197,7 @@ public class CasasMorosas extends javax.swing.JFrame {
     jScrollPane2.setViewportView(jTable2);
 
     jButton1.setText("← Volver al inicio");
+    jButton1.addActionListener(this::jButton1ActionPerformed);
 
     jLabel1.setText("Casas Morosas");
 
@@ -347,6 +351,12 @@ public class CasasMorosas extends javax.swing.JFrame {
     pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        new menuPrincipal().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+    
     /**
      * @param args the command line arguments
      */

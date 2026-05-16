@@ -3,7 +3,7 @@
  */
 
 package com.mycompany.sistema.condominio.vista.verde;
-
+import ui.Login;
 /**
  *
  * @author Josue Ambrocio
@@ -11,6 +11,8 @@ package com.mycompany.sistema.condominio.vista.verde;
 public class SistemaCondominioVistaVerde {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Login login = new Login();
+        login.setLocationRelativeTo(null);
+        login.setVisible(true);
     }
 }

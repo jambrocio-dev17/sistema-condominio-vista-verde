@@ -149,6 +149,7 @@ public class menuPrincipal extends javax.swing.JFrame {
 
         btnCasasMorosas.setBackground(new java.awt.Color(200, 50, 50));
         btnCasasMorosas.setText("Casas Morosas");
+        btnCasasMorosas.addActionListener(this::btnCasasMorosasActionPerformed);
         pnlTarjeta.add(btnCasasMorosas, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 220, 235, 70));
 
         lblTituloResumen.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -250,6 +251,12 @@ public class menuPrincipal extends javax.swing.JFrame {
         new estadoCuenta().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnEstadoCuentaActionPerformed
+
+    private void btnCasasMorosasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCasasMorosasActionPerformed
+        // TODO add your handling code here:
+        new CasasMorosas().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnCasasMorosasActionPerformed
 
     /**
      * @param args the command line arguments

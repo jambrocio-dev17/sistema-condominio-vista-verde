@@ -1,5 +1,4 @@
 C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\com\mycompany\sistema\condominio\vista\verde\SistemaCondominioVistaVerde.java
-<<<<<<< HEAD
 C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\components\BotonRedondeado.java
 C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\components\FondoVerde.java
 C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\components\PanelRedondeado.java
@@ -9,6 +8,7 @@ C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\c
 C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\configuration\Conexion.java
 C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\logic\Validaciones.java
 C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\model\Clases.java
+C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\CasasMorosas.java
 C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\ConfiguracionCuota.java
 C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\estadoCuenta.java
 C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\Login.java
@@ -16,9 +16,3 @@ C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\u
 C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\RegistroPago.java
 C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\RegistroPropietario.java
 C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\reporte_general.java
-=======
-C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\configuration\Conexion.java
-C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\logic\Validaciones.java
-C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\model\Clases.java
-C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\CasasMorosas.java
->>>>>>> feature/casas-morosas
