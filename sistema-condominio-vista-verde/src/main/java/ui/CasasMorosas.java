@@ -50,7 +50,9 @@ public class CasasMorosas extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = public java.awt.Component prepareRenderer(javax.swing.table.TableCellRenderer renderer, int row, int column) {
+        jTable3 = new javax.swing.JTable() {
+            @Override
+            public java.awt.Component prepareRenderer(javax.swing.table.TableCellRenderer renderer, int row, int column) {
             java.awt.Component c = super.prepareRenderer(renderer, row, column);
 
             // Si la fila no está seleccionada, aplicamos el color alternado
