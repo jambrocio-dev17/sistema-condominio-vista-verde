@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ui\RegistroPropietario.class
 model\Clases.class
 ui\ConfiguracionCuota.class
@@ -8,3 +9,11 @@ ui\menuPrincipal.class
 configuration\Conexion.class
 logic\Validaciones.class
 ui\estadoCuenta.class
+=======
+configuration\Conexion.class
+ui\CasasMorosas.class
+logic\Validaciones.class
+model\Clases.class
+ui\CasasMorosas$1.class
+com\mycompany\sistema\condominio\vista\verde\SistemaCondominioVistaVerde.class
+>>>>>>> feature/casas-morosas
