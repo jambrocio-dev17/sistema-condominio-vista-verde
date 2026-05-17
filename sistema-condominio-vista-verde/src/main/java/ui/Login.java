@@ -10,6 +10,7 @@ import components.PanelSoloBorde;
 import components.PasswordFieldRedondeado;
 import components.TextFieldRedondeado;
 import javax.swing.JOptionPane;
+import logic.LoginController;
 
 /**
  *
@@ -20,6 +21,8 @@ public class Login extends javax.swing.JFrame {
     
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Login.class.getName());
+    
+    LoginController lgController = new LoginController();
     
     public Login() {
         initComponents();
@@ -261,22 +264,10 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        String usuario = jTextField2.getText().trim();
-        String contrasena = jTextField1.getText().trim();
-
-        System.out.println("Usuario: " + usuario);
-        System.out.println("Contrasena: " + contrasena);
-
-        if (usuario.equals("admin") && contrasena.equals("1234")) {
-            new menuPrincipal().setVisible(true);
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(this,
-                "Usuario o contraseña incorrectos",
-                "Error de acceso",
-                JOptionPane.ERROR_MESSAGE);
-        }
+        String usuario = jTextField2.getText();
+        String password = jTextField1.getText();
+        
+        lgController.procesarIngreso(usuario, password);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

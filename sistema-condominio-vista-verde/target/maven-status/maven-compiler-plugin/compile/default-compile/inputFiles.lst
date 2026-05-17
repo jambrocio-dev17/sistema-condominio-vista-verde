@@ -1,18 +1,19 @@
-C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\com\mycompany\sistema\condominio\vista\verde\SistemaCondominioVistaVerde.java
-C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\components\BotonRedondeado.java
-C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\components\FondoVerde.java
-C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\components\PanelRedondeado.java
-C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\components\PanelSoloBorde.java
-C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\components\PasswordFieldRedondeado.java
-C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\components\TextFieldRedondeado.java
-C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\configuration\Conexion.java
-C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\logic\Validaciones.java
-C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\model\Clases.java
-C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\CasasMorosas.java
-C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\ConfiguracionCuota.java
-C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\estadoCuenta.java
-C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\Login.java
-C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\menuPrincipal.java
-C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\RegistroPago.java
-C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\RegistroPropietario.java
-C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\reporte_general.java
+C:\Working\Proyecto Final- New changes\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\com\mycompany\sistema\condominio\vista\verde\SistemaCondominioVistaVerde.java
+C:\Working\Proyecto Final- New changes\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\components\BotonRedondeado.java
+C:\Working\Proyecto Final- New changes\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\components\FondoVerde.java
+C:\Working\Proyecto Final- New changes\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\components\PanelRedondeado.java
+C:\Working\Proyecto Final- New changes\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\components\PanelSoloBorde.java
+C:\Working\Proyecto Final- New changes\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\components\PasswordFieldRedondeado.java
+C:\Working\Proyecto Final- New changes\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\components\TextFieldRedondeado.java
+C:\Working\Proyecto Final- New changes\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\configuration\Conexion.java
+C:\Working\Proyecto Final- New changes\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\logic\LoginController.java
+C:\Working\Proyecto Final- New changes\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\logic\Validaciones.java
+C:\Working\Proyecto Final- New changes\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\model\Clases.java
+C:\Working\Proyecto Final- New changes\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\CasasMorosas.java
+C:\Working\Proyecto Final- New changes\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\ConfiguracionCuota.java
+C:\Working\Proyecto Final- New changes\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\estadoCuenta.java
+C:\Working\Proyecto Final- New changes\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\Login.java
+C:\Working\Proyecto Final- New changes\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\menuPrincipal.java
+C:\Working\Proyecto Final- New changes\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\RegistroPago.java
+C:\Working\Proyecto Final- New changes\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\RegistroPropietario.java
+C:\Working\Proyecto Final- New changes\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\reporte_general.java
