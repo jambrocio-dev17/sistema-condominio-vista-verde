@@ -34,8 +34,8 @@ public class menuPrincipal extends javax.swing.JFrame {
         pnlHeader = new javax.swing.JPanel();
         lblLogo = new javax.swing.JLabel();
         lblNombreCondominio = new javax.swing.JLabel();
-        lblFecha = new javax.swing.JLabel();
         btnCerrarSesion = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         pnlBienvenida = new javax.swing.JPanel();
         lblAvatarAdmin = new javax.swing.JLabel();
         lblBienvenida = new javax.swing.JLabel();
@@ -61,40 +61,47 @@ public class menuPrincipal extends javax.swing.JFrame {
         setTitle("Sistema Vista Verde — Inicio");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlFondo.setBackground(new java.awt.Color(27, 77, 46));
+        pnlFondo.setBackground(new java.awt.Color(26, 58, 10));
         pnlFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlTarjeta.setBackground(new java.awt.Color(255, 255, 255));
+        pnlTarjeta.setMaximumSize(new java.awt.Dimension(760, 510));
+        pnlTarjeta.setMinimumSize(new java.awt.Dimension(760, 510));
+        pnlTarjeta.setPreferredSize(new java.awt.Dimension(760, 510));
         pnlTarjeta.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlHeader.setBackground(new java.awt.Color(58, 107, 53));
-        pnlHeader.setPreferredSize(new java.awt.Dimension(750, 65));
+        pnlHeader.setBackground(new java.awt.Color(45, 90, 30));
+        pnlHeader.setPreferredSize(new java.awt.Dimension(760, 60));
         pnlHeader.setLayout(null);
 
         lblLogo.setBackground(new java.awt.Color(25, 60, 35));
-        lblLogo.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        lblLogo.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
         lblLogo.setForeground(new java.awt.Color(255, 255, 255));
-        lblLogo.setText("V");
+        lblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblLogo.setText("*");
+        lblLogo.setMaximumSize(new java.awt.Dimension(40, 40));
+        lblLogo.setMinimumSize(new java.awt.Dimension(40, 40));
         lblLogo.setOpaque(true);
+        lblLogo.setPreferredSize(new java.awt.Dimension(40, 40));
         pnlHeader.add(lblLogo);
-        lblLogo.setBounds(10, 12, 45, 45);
+        lblLogo.setBounds(20, 10, 45, 45);
 
-        lblNombreCondominio.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        lblNombreCondominio.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
         lblNombreCondominio.setForeground(new java.awt.Color(255, 255, 255));
-        lblNombreCondominio.setText("Condominio Vista Verde");
+        lblNombreCondominio.setText("<html><b style='color:white; font-size:11px;'>Condominio Vista Verde</b><br><span style='color:#8fcc6f; font-size:9px;'>Mayo 2026 - Miércoles 29</span></html>");
         pnlHeader.add(lblNombreCondominio);
-        lblNombreCondominio.setBounds(65, 10, 250, 22);
-
-        lblFecha.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        lblFecha.setForeground(new java.awt.Color(180, 220, 180));
-        lblFecha.setText("Mayo 2026 · Miércoles 29");
-        pnlHeader.add(lblFecha);
-        lblFecha.setBounds(65, 35, 250, 18);
+        lblNombreCondominio.setBounds(70, 10, 250, 40);
 
         btnCerrarSesion.setText("Cerrar sesión");
         btnCerrarSesion.addActionListener(this::btnCerrarSesionActionPerformed);
         pnlHeader.add(btnCerrarSesion);
         btnCerrarSesion.setBounds(590, 20, 130, 34);
+
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("🌳");
+        pnlHeader.add(jLabel1);
+        jLabel1.setBounds(430, 20, 30, 30);
 
         pnlTarjeta.add(pnlHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 70));
 
@@ -110,10 +117,10 @@ public class menuPrincipal extends javax.swing.JFrame {
         pnlBienvenida.add(lblAvatarAdmin);
         lblAvatarAdmin.setBounds(10, 5, 30, 30);
 
-        lblBienvenida.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        lblBienvenida.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
         lblBienvenida.setText("Bienvenido, Administrador");
         pnlBienvenida.add(lblBienvenida);
-        lblBienvenida.setBounds(50, 10, 250, 20);
+        lblBienvenida.setBounds(70, 10, 250, 20);
 
         pnlTarjeta.add(pnlBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 750, 40));
 
@@ -209,9 +216,9 @@ public class menuPrincipal extends javax.swing.JFrame {
 
         pnlTarjeta.add(pnlCasasMorosas, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 352, 235, 80));
 
-        pnlFondo.add(pnlTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 25, 750, 480));
+        pnlFondo.add(pnlTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 760, 520));
 
-        getContentPane().add(pnlFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 530));
+        getContentPane().add(pnlFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 550));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -291,12 +298,12 @@ public class menuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnRegistroPago;
     private javax.swing.JButton btnRegistroPropietario;
     private javax.swing.JButton btnReporteGeneral;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblAvatarAdmin;
     private javax.swing.JLabel lblBienvenida;
     private javax.swing.JLabel lblDescCasasMorosas;
     private javax.swing.JLabel lblDescCasasTotales;
     private javax.swing.JLabel lblDescPagosAlDia;
-    private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblNombreCondominio;
     private javax.swing.JLabel lblNumCasasMorosas;
