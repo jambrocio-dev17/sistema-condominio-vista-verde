@@ -2,4 +2,5 @@ configuration\Conexion.class
 ui\CasasMorosas.class
 logic\Validaciones.class
 model\Clases.class
+ui\CasasMorosas$1.class
 com\mycompany\sistema\condominio\vista\verde\SistemaCondominioVistaVerde.class

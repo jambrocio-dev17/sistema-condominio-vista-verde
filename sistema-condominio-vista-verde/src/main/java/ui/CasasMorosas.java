@@ -1,13 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package ui;
 
-/**
- *
- * @author Josue Ambrocio
- */
+
 public class CasasMorosas extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CasasMorosas.class.getName());
@@ -50,20 +43,27 @@ public class CasasMorosas extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = public java.awt.Component prepareRenderer(javax.swing.table.TableCellRenderer renderer, int row, int column) {
-            java.awt.Component c = super.prepareRenderer(renderer, row, column);
 
-            // Si la fila no está seleccionada, aplicamos el color alternado
-            if (!isRowSelected(row)) {
-                // Evaluamos si la fila es par o impar
-                // Color de fondo para filas pares (puedes usar el crema de tu imagen)
-                // Color de fondo para filas impares (blanco o un tono distinto)
-                c.setBackground(row % 2 == 0 ? new java.awt.Color(255, 245, 240) : java.awt.Color.WHITE);
-            }
+        jTable3 = new javax.swing.JTable() {
+        @Override
+        public java.awt.Component prepareRenderer(
+            javax.swing.table.TableCellRenderer renderer,
+            int row,
+            int column) {
 
-            return c;
+        java.awt.Component c = super.prepareRenderer(renderer, row, column);
+
+        if (!isRowSelected(row)) {
+            c.setBackground(
+                row % 2 == 0
+                ? new java.awt.Color(255, 245, 240)
+                : java.awt.Color.WHITE
+            );
         }
-    };
+
+        return c;
+    }
+};
     jPanel1 = new javax.swing.JPanel();
     jLabel6 = new javax.swing.JLabel();
     jLabel7 = new javax.swing.JLabel();
@@ -192,6 +192,7 @@ public class CasasMorosas extends javax.swing.JFrame {
     jScrollPane2.setViewportView(jTable2);
 
     jButton1.setText("← Volver al inicio");
+    jButton1.addActionListener(this::jButton1ActionPerformed);
 
     jLabel1.setText("Casas Morosas");
 
@@ -344,6 +345,10 @@ public class CasasMorosas extends javax.swing.JFrame {
 
     pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
