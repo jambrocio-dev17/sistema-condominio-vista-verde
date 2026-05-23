@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 C:\Java Projects\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\com\mycompany\sistema\condominio\vista\verde\SistemaCondominioVistaVerde.java
 C:\Java Projects\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\configuration\Conexion.java
 C:\Java Projects\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\logic\Validaciones.java
 C:\Java Projects\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\model\Clases.java
 C:\Java Projects\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\CasasMorosas.java
+=======
+C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\com\mycompany\sistema\condominio\vista\verde\SistemaCondominioVistaVerde.java
+C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\configuration\Conexion.java
+C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\logic\Validaciones.java
+C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\model\Clases.java
+C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\CasasMorosas.java
+>>>>>>> f36dfe3f59fd61b186ab640ba44abb3b6f0bc559
