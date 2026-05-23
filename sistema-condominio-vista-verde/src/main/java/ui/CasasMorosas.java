@@ -10,6 +10,8 @@ public class CasasMorosas extends javax.swing.JFrame {
      */
     public CasasMorosas() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        jButton1.addActionListener(this::jButton1ActionPerformed);
     }
 
     /**
@@ -46,8 +48,8 @@ public class CasasMorosas extends javax.swing.JFrame {
 <<<<<<< HEAD
 =======
         jTable3 = new javax.swing.JTable() {
-            @Override
-            public java.awt.Component prepareRenderer(javax.swing.table.TableCellRenderer renderer, int row, int column) {
+    @Override
+    public java.awt.Component prepareRenderer(javax.swing.table.TableCellRenderer renderer, int row, int column) {
             java.awt.Component c = super.prepareRenderer(renderer, row, column);
 >>>>>>> f36dfe3f59fd61b186ab640ba44abb3b6f0bc559
 
@@ -67,10 +69,15 @@ public class CasasMorosas extends javax.swing.JFrame {
                 : java.awt.Color.WHITE
             );
         }
+<<<<<<< HEAD
 
         return c;
     }
 };
+=======
+    
+    };
+>>>>>>> develop
     jPanel1 = new javax.swing.JPanel();
     jLabel6 = new javax.swing.JLabel();
     jLabel7 = new javax.swing.JLabel();
@@ -355,8 +362,15 @@ public class CasasMorosas extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
     }//GEN-LAST:event_jButton1ActionPerformed
 
+=======
+        new menuPrincipal().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+    
+>>>>>>> develop
     /**
      * @param args the command line arguments
      */
