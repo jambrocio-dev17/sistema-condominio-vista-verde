@@ -253,8 +253,8 @@ public class menuPrincipal extends javax.swing.JFrame {
 
     private void btnCasasMorosasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCasasMorosasActionPerformed
         // TODO add your handling code here:
-        //new CasasMorosas().setVisible(true);
-        //this.dispose();
+        new CasasMorosas().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnCasasMorosasActionPerformed
 
     /**

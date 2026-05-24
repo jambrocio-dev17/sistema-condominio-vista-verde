@@ -216,6 +216,7 @@ public class reporte_general extends javax.swing.JFrame {
         btnVolverInicio.setBackground(new java.awt.Color(204, 204, 204));
         btnVolverInicio.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         btnVolverInicio.setText("←Volver al Inicio");
+        btnVolverInicio.addActionListener(this::btnVolverInicioActionPerformed);
 
         lblInicioReporte.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         lblInicioReporte.setForeground(new java.awt.Color(58, 122, 26));
@@ -280,6 +281,12 @@ public class reporte_general extends javax.swing.JFrame {
     private void btnExportarCSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarCSVActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnExportarCSVActionPerformed
+
+    private void btnVolverInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverInicioActionPerformed
+        // TODO add your handling code here:
+        new menuPrincipal().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnVolverInicioActionPerformed
 
     /**
      * @param args the command line arguments
