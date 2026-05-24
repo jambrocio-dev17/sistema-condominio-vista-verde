@@ -91,18 +91,18 @@ public class reporte_general extends javax.swing.JFrame {
                 }
             }
 
-            jTable1.setModel(modelo);
-
-            double pendiente = esperado - recaudado;
-            jLabel6.setText(String.format("Q%,.2f", recaudado));
-            jLabel8.setText(String.format("Q%,.2f", esperado));
-            jLabel10.setText(String.format("Q%,.2f", pendiente));
-            jLabel11.setText(totalCasas + " casas registradas");
+//            jTable1.setModel(modelo);
+//
+//            double pendiente = esperado - recaudado;
+//            jLabel6.setText(String.format("Q%,.2f", recaudado));
+//            jLabel8.setText(String.format("Q%,.2f", esperado));
+//            jLabel10.setText(String.format("Q%,.2f", pendiente));
+//            jLabel11.setText(totalCasas + " casas registradas");
 
             // Actualiza el título con el mes actual
             String[] meses = {"Enero","Febrero","Marzo","Abril","Mayo","Junio",
                               "Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"};
-            jLabel2.setText("Reporte General — " + meses[mesActual - 1] + " " + anioActual);
+//            jLabel2.setText("Reporte General — " + meses[mesActual - 1] + " " + anioActual);
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this,
