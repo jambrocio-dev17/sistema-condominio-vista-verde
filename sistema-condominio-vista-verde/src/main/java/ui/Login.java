@@ -43,7 +43,6 @@ public class Login extends javax.swing.JFrame {
         txtEscribirContraseña = new components.PasswordFieldRedondeado(15, "Ingrese su contraseña");
         txtEscribirUsuario = new TextFieldRedondeado(15, "Ingrese su usuario");
         lblLogin = new javax.swing.JLabel();
-        lblPrincipal = new javax.swing.JLabel();
         lblNombreCondominio = new javax.swing.JLabel();
         lblPanelAdministrador = new javax.swing.JLabel();
         lblNombreUsuario = new javax.swing.JLabel();
@@ -86,8 +85,6 @@ public class Login extends javax.swing.JFrame {
 
         lblLogin.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         lblLogin.setText("Login");
-
-        lblPrincipal.setText("Principal");
 
         lblNombreCondominio.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblNombreCondominio.setForeground(new java.awt.Color(0, 102, 51));
@@ -142,11 +139,7 @@ public class Login extends javax.swing.JFrame {
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(158, 158, 158)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(lblPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(lblLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(39, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -156,9 +149,7 @@ public class Login extends javax.swing.JFrame {
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(lblPrincipal)
-                .addGap(30, 30, 30)
+                .addGap(73, 73, 73)
                 .addComponent(lblNombreCondominio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblPanelAdministrador)
@@ -318,7 +309,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel lblNombreCondominio;
     private javax.swing.JLabel lblNombreUsuario;
     private javax.swing.JLabel lblPanelAdministrador;
-    private javax.swing.JLabel lblPrincipal;
     private javax.swing.JTextField txtEscribirContraseña;
     private javax.swing.JTextField txtEscribirUsuario;
     // End of variables declaration//GEN-END:variables

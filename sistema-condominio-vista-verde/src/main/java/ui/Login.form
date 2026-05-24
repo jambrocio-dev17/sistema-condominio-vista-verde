@@ -179,13 +179,7 @@
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
-                                          <Component id="lblPrincipal" min="-2" pref="60" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="lblLogin" min="-2" pref="65" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="lblLogin" min="-2" pref="65" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace pref="39" max="32767" attributes="0"/>
@@ -200,9 +194,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                          <Component id="lblPrincipal" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
                           <Component id="lblNombreCondominio" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="lblPanelAdministrador" min="-2" max="-2" attributes="0"/>
@@ -248,11 +240,6 @@
                       <Font name="Segoe UI" size="18" style="3"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Login"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="lblPrincipal">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Principal"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblNombreCondominio">

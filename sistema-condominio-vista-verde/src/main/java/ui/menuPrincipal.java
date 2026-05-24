@@ -35,7 +35,6 @@ public class menuPrincipal extends javax.swing.JFrame {
         lblLogo = new javax.swing.JLabel();
         lblNombreCondominio = new javax.swing.JLabel();
         btnCerrarSesion = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         pnlBienvenida = new javax.swing.JPanel();
         lblAvatarAdmin = new javax.swing.JLabel();
         lblBienvenida = new javax.swing.JLabel();
@@ -78,7 +77,6 @@ public class menuPrincipal extends javax.swing.JFrame {
         lblLogo.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
         lblLogo.setForeground(new java.awt.Color(255, 255, 255));
         lblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblLogo.setText("*");
         lblLogo.setMaximumSize(new java.awt.Dimension(40, 40));
         lblLogo.setMinimumSize(new java.awt.Dimension(40, 40));
         lblLogo.setOpaque(true);
@@ -97,13 +95,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         pnlHeader.add(btnCerrarSesion);
         btnCerrarSesion.setBounds(590, 20, 130, 34);
 
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("🌳");
-        pnlHeader.add(jLabel1);
-        jLabel1.setBounds(430, 20, 30, 30);
-
-        pnlTarjeta.add(pnlHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 70));
+        pnlTarjeta.add(pnlHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 70));
 
         pnlBienvenida.setBackground(new java.awt.Color(214, 237, 220));
         pnlBienvenida.setLayout(null);
@@ -122,7 +114,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         pnlBienvenida.add(lblBienvenida);
         lblBienvenida.setBounds(70, 10, 250, 20);
 
-        pnlTarjeta.add(pnlBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 750, 40));
+        pnlTarjeta.add(pnlBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 760, 40));
 
         lblTituloModulos.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         lblTituloModulos.setForeground(new java.awt.Color(100, 100, 100));
@@ -216,7 +208,7 @@ public class menuPrincipal extends javax.swing.JFrame {
 
         pnlTarjeta.add(pnlCasasMorosas, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 352, 235, 80));
 
-        pnlFondo.add(pnlTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 760, 520));
+        pnlFondo.add(pnlTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 760, 510));
 
         getContentPane().add(pnlFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 550));
 
@@ -261,8 +253,8 @@ public class menuPrincipal extends javax.swing.JFrame {
 
     private void btnCasasMorosasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCasasMorosasActionPerformed
         // TODO add your handling code here:
-        new CasasMorosas().setVisible(true);
-        this.dispose();
+        //new CasasMorosas().setVisible(true);
+        //this.dispose();
     }//GEN-LAST:event_btnCasasMorosasActionPerformed
 
     /**
@@ -298,7 +290,6 @@ public class menuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnRegistroPago;
     private javax.swing.JButton btnRegistroPropietario;
     private javax.swing.JButton btnReporteGeneral;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblAvatarAdmin;
     private javax.swing.JLabel lblBienvenida;
     private javax.swing.JLabel lblDescCasasMorosas;

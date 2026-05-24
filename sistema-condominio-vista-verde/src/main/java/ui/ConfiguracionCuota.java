@@ -54,21 +54,16 @@ public class ConfiguracionCuota extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lblConfiguracionCuota = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        lblLogo = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         lblCuotaActual = new javax.swing.JLabel();
         lblMontoCuotaActual = new javax.swing.JLabel();
         lblVigente = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
-        lblMsjNuevoMonto = new javax.swing.JLabel();
         lblActualizarMonto = new javax.swing.JLabel();
         lblNuevoMontoCuota = new javax.swing.JLabel();
         txtMontoMensual = new javax.swing.JTextField();
-        lblTextoNuevoValor = new javax.swing.JLabel();
         lblRecaudacion = new javax.swing.JLabel();
         txtMontoRecaudacion = new javax.swing.JTextField();
-        lblMensajeCalculoAuto = new javax.swing.JLabel();
         tbnCancelar = new javax.swing.JButton();
         tbnGuardar = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
@@ -88,26 +83,15 @@ public class ConfiguracionCuota extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(26, 58, 10));
 
-        lblLogo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblLogo.setForeground(new java.awt.Color(255, 255, 255));
-        lblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblLogo.setText("$");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(8, Short.MAX_VALUE)
-                .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGap(0, 40, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(8, Short.MAX_VALUE))
+            .addGap(0, 40, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -180,27 +164,6 @@ public class ConfiguracionCuota extends javax.swing.JFrame {
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        jPanel6.setBackground(new java.awt.Color(255, 243, 230));
-        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 180, 100)));
-
-        lblMsjNuevoMonto.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
-        lblMsjNuevoMonto.setForeground(new java.awt.Color(180, 90, 20));
-        lblMsjNuevoMonto.setText("<html><b>●</b> El nuevo monto ingresado aplicará únicamente para los pagos registrados a partir de este momento. Los pagos anteriores    no serán modificados.</html>");
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblMsjNuevoMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblMsjNuevoMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 27, Short.MAX_VALUE)
-        );
-
         lblActualizarMonto.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         lblActualizarMonto.setForeground(new java.awt.Color(58, 122, 26));
         lblActualizarMonto.setText("ACTUALIZAR MONTO");
@@ -212,10 +175,6 @@ public class ConfiguracionCuota extends javax.swing.JFrame {
         txtMontoMensual.setText(" Q  0.00");
         txtMontoMensual.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(160, 200, 120)));
 
-        lblTextoNuevoValor.setFont(new java.awt.Font("SansSerif", 0, 9)); // NOI18N
-        lblTextoNuevoValor.setForeground(new java.awt.Color(90, 154, 42));
-        lblTextoNuevoValor.setText("Ingrese el nuevo valor — JTextField con validación numérica");
-
         lblRecaudacion.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         lblRecaudacion.setText("Recaudación mensual esperada con nuevo monto");
 
@@ -225,17 +184,13 @@ public class ConfiguracionCuota extends javax.swing.JFrame {
         txtMontoRecaudacion.setText("Q  0.00");
         txtMontoRecaudacion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(160, 200, 120)));
 
-        lblMensajeCalculoAuto.setFont(new java.awt.Font("SansSerif", 0, 9)); // NOI18N
-        lblMensajeCalculoAuto.setForeground(new java.awt.Color(90, 154, 42));
-        lblMensajeCalculoAuto.setText("Calculado automáticamente: nuevo monto × 30 casas");
-
         tbnCancelar.setBackground(new java.awt.Color(232, 232, 232));
         tbnCancelar.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         tbnCancelar.setForeground(new java.awt.Color(80, 80, 80));
         tbnCancelar.setText("Cancelar");
 
         tbnGuardar.setBackground(new java.awt.Color(58, 122, 26));
-        tbnGuardar.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        tbnGuardar.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         tbnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         tbnGuardar.setText("Guardar");
         tbnGuardar.setOpaque(true);
@@ -248,55 +203,45 @@ public class ConfiguracionCuota extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtMontoMensual)
                     .addComponent(txtMontoRecaudacion)
                     .addComponent(jSeparator2)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblMensajeCalculoAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblNuevoMontoCuota, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblActualizarMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(lblTextoNuevoValor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblRecaudacion, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                    .addComponent(lblNuevoMontoCuota, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblActualizarMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblRecaudacion, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(198, Short.MAX_VALUE)
                 .addComponent(tbnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(102, 102, 102)
+                .addGap(101, 101, 101)
                 .addComponent(tbnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(188, 188, 188))
+                .addGap(189, 189, 189))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(25, 25, 25)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(lblActualizarMonto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblActualizarMonto, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                .addGap(1, 1, 1)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblNuevoMontoCuota)
-                .addGap(2, 2, 2)
-                .addComponent(txtMontoMensual, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblTextoNuevoValor)
-                .addGap(18, 18, 18)
-                .addComponent(lblRecaudacion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtMontoRecaudacion, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblMensajeCalculoAuto)
-                .addGap(33, 33, 33)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tbnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tbnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(lblNuevoMontoCuota)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtMontoMensual, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addComponent(lblRecaudacion)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtMontoRecaudacion, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(128, 128, 128))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tbnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tbnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(42, 42, 42))))
         );
 
         btnVolverInicio.setBackground(new java.awt.Color(0, 0, 0));
@@ -331,7 +276,7 @@ public class ConfiguracionCuota extends javax.swing.JFrame {
                     .addComponent(btnVolverInicio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(737, 737, 737))
+                .addGap(752, 752, 752))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -392,19 +337,14 @@ public class ConfiguracionCuota extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lblActualizarMonto;
     private javax.swing.JLabel lblConfiguracionCuota;
     private javax.swing.JLabel lblCuotaActual;
     private javax.swing.JLabel lblInicioConfiCuota;
-    private javax.swing.JLabel lblLogo;
-    private javax.swing.JLabel lblMensajeCalculoAuto;
     private javax.swing.JLabel lblMontoCuotaActual;
-    private javax.swing.JLabel lblMsjNuevoMonto;
     private javax.swing.JLabel lblNuevoMontoCuota;
     private javax.swing.JLabel lblRecaudacion;
-    private javax.swing.JLabel lblTextoNuevoValor;
     private javax.swing.JLabel lblVigente;
     private javax.swing.JButton tbnCancelar;
     private javax.swing.JButton tbnGuardar;
