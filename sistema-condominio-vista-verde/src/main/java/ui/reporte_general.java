@@ -4,6 +4,15 @@
  */
 package ui;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Calendar;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author mc296
@@ -12,12 +21,102 @@ public class reporte_general extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(reporte_general.class.getName());
 
-    /**
-     * Creates new form reporte_general
-     */
+    
+    private static final String DB_URL = "jdbc:postgresql://localhost:5432/vista_verde";
+    private static final String DB_USER = "postgres";
+    private static final String DB_PASS = "Elfogg2006.";
+
+    private Connection conectar() throws SQLException {
+        return DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+    }
+
+    private void cargarReporte() {
+        // Mes y año actual
+        Calendar cal = Calendar.getInstance();
+        int mesActual = cal.get(Calendar.MONTH) + 1; // Calendar empieza en 0
+        int anioActual = cal.get(Calendar.YEAR);
+
+        // Consulta: cada casa con su propietario y el pago del mes (si existe)
+        String sql =
+            "SELECT c.numero_casa, " +
+            "       COALESCE(p.nombre_completo, '(Sin propietario)') AS propietario, " +
+            "       COALESCE(p.dpi, '-')   AS dpi, " +
+            "       COALESCE(p.correo, '-') AS correo, " +
+            "       COALESCE(pa.estado, 'Pendiente') AS estado, " +
+            "       COALESCE(pa.monto, (SELECT cuota_actual FROM Configuracion LIMIT 1)) AS total " +
+            "FROM Casa c " +
+            "LEFT JOIN Propietario p ON p.numero_casa = c.numero_casa " +
+            "LEFT JOIN Pago pa ON pa.numero_casa = c.numero_casa " +
+            "                  AND pa.mes = ? AND pa.anio = ? " +
+            "ORDER BY c.numero_casa";
+
+        DefaultTableModel modelo = new DefaultTableModel(
+            new String[]{"N.°", "Propietario", "DPI", "Correo", "Estado", "Total"}, 0
+        ) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // tabla de solo lectura
+            }
+        };
+
+        double recaudado = 0.0;
+        double esperado = 0.0;
+        int totalCasas = 0;
+
+        try (Connection con = conectar();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setInt(1, mesActual);
+            ps.setInt(2, anioActual);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    int numCasa = rs.getInt("numero_casa");
+                    String propietario = rs.getString("propietario");
+                    String dpi = rs.getString("dpi");
+                    String correo = rs.getString("correo");
+                    String estado = rs.getString("estado");
+                    double total = rs.getDouble("total");
+
+                    modelo.addRow(new Object[]{
+                        numCasa, propietario, dpi, correo, estado,
+                        String.format("Q%,.2f", total)
+                    });
+
+                    esperado += total;
+                    if ("Pagado".equalsIgnoreCase(estado)) {
+                        recaudado += total;
+                    }
+                    totalCasas++;
+                }
+            }
+
+            jTable1.setModel(modelo);
+
+            double pendiente = esperado - recaudado;
+            jLabel6.setText(String.format("Q%,.2f", recaudado));
+            jLabel8.setText(String.format("Q%,.2f", esperado));
+            jLabel10.setText(String.format("Q%,.2f", pendiente));
+            jLabel11.setText(totalCasas + " casas registradas");
+
+            // Actualiza el título con el mes actual
+            String[] meses = {"Enero","Febrero","Marzo","Abril","Mayo","Junio",
+                              "Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"};
+            jLabel2.setText("Reporte General — " + meses[mesActual - 1] + " " + anioActual);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this,
+                "Error al cargar el reporte:\n" + ex.getMessage(),
+                "Error de base de datos",
+                JOptionPane.ERROR_MESSAGE);
+            logger.log(java.util.logging.Level.SEVERE, "Error cargando reporte", ex);
+        }
+    }
+    
     public reporte_general() {
         initComponents();
         this.setLocationRelativeTo(null);
+        cargarReporte();
     }
 
     /**
