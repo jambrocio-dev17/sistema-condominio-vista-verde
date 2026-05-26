@@ -1,67 +1,41 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package DAO;
 
-
 import configuration.Conexion;
-import java.awt.List;
+import model.ConfiguracionCuotaModel;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import logic.ConfiguracionCuotaController;
-
+/**
+ *
+ * @author elena
+ */
 public class ConfiguracionCuotaDAO {
-    public boolean registrar(ConfiguracionCuotaController confiCuota) {
-        String sql = "INSERT INTO residentes (nombre, apartamento) VALUES (?, ?)";
+    
+    // Método para guardar el nuevo monto en la base de datos
+    public boolean actualizar(ConfiguracionCuotaModel modelo) {
+        String sql = "UPDATE Configuracion SET cuota_actual = ? WHERE id_config = ?";
 
-            // El try-with-resources cierra automáticamente la conexión y el statement
-            /*try (Connection con = Conexion.getConnection().conectar();
-                 PreparedStatement ps = con.prepareStatement(sql)) {
+        Connection con = Conexion.getInstance().getConnection();
 
-                //ps.setInt(1, confiCuota.getId());
-                //ps.setInt(2, confiCuota.getMonto());
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            
+            ps.setFloat(1, modelo.getMonto()); 
+            ps.setInt(2, modelo.getId()); 
 
-                ps.execute();
-                return true;
+            int filasAfectadas = ps.executeUpdate();
+            return filasAfectadas > 0;
 
-            } catch (SQLException e) {
-                System.err.println("Error al registrar residente: " + e.getMessage());
-                return false;
-            }*/
+        } catch (SQLException e) {
+            System.err.println("Error al actualizar la cuota: " + e.getMessage());
             return false;
+        }
     }
-
-        /*public List<ConfiguracionCuotaController> listar() {
-            List<ConfiguracionCuotaController> lista = new ArrayList<>();
-            String sql = "SELECT * FROM residentes ORDER BY id ASC";
-
-            try (Connection con = Conexion.getInstancia().conectar();
-                 PreparedStatement ps = con.prepareStatement(sql);
-                 ResultSet rs = ps.executeQuery()) {
-
-                while (rs.next()) {
-                    ConfiguracionCuotaController res = new ConfiguracionCuotaController();
-                    res.setId(rs.getInt("id"));
-                    res.setNombre(rs.getString("nombre"));
-                    res.setApartamento(rs.getString("apartamento"));
-                    lista.add(res);
-                }
-
-            } catch (SQLException e) {
-                System.err.println("Error al listar residentes: " + e.getMessage());
-            }
-
-            return lista;
-        }*/
-
-        public boolean actualizar(ConfiguracionCuotaController confiCuota) {
-            // Lógica similar al registrar, pero con UPDATE
-            return false; 
-        }
-
-        public boolean eliminar(int id) {
-            // Lógica similar al registrar, pero con DELETE
-            return false;
-        }
-
+    
 }
