@@ -10,6 +10,7 @@ import components.PanelSoloBorde;
 import components.PasswordFieldRedondeado;
 import components.TextFieldRedondeado;
 import javax.swing.JOptionPane;
+import logic.LoginController;
 
 /**
  *
@@ -17,7 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class Login extends javax.swing.JFrame {
     
-    
+    LoginController lgController = new LoginController();
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Login.class.getName());
     
@@ -80,6 +81,8 @@ public class Login extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
+
+        txtEscribirContraseña.addActionListener(this::txtEscribirContraseñaActionPerformed);
 
         txtEscribirUsuario.addActionListener(this::txtEscribirUsuarioActionPerformed);
 
@@ -252,23 +255,31 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void btnIngresarSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarSistemaActionPerformed
-        // TODO add your handling code here:
-        String usuario = txtEscribirUsuario.getText().trim();
-        String contrasena = txtEscribirContraseña.getText().trim();
-
-        System.out.println("Usuario: " + usuario);
-        System.out.println("Contrasena: " + contrasena);
-
-        if (usuario.equals("admin") && contrasena.equals("1234")) {
-            new menuPrincipal().setVisible(true);
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(this,
-                "Usuario o contraseña incorrectos",
-                "Error de acceso",
-                JOptionPane.ERROR_MESSAGE);
-        }
+        String usuario = txtEscribirUsuario.getText();
+        String password = txtEscribirContraseña.getText();
+        
+        lgController.procesarIngreso(usuario, password);
+// TODO add your handling code here:
+//        String usuario = txtEscribirUsuario.getText().trim();
+//        String contrasena = txtEscribirContraseña.getText().trim();
+//
+//        System.out.println("Usuario: " + usuario);
+//        System.out.println("Contrasena: " + contrasena);
+//
+//        if (usuario.equals("admin") && contrasena.equals("1234")) {
+//            new menuPrincipal().setVisible(true);
+//            this.dispose();
+//        } else {
+//            JOptionPane.showMessageDialog(this,
+//                "Usuario o contraseña incorrectos",
+//                "Error de acceso",
+//                JOptionPane.ERROR_MESSAGE);
+//        }
     }//GEN-LAST:event_btnIngresarSistemaActionPerformed
+
+    private void txtEscribirContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEscribirContraseñaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEscribirContraseñaActionPerformed
 
     /**
      * @param args the command line arguments

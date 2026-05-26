@@ -6,8 +6,12 @@ C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\c
 C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\components\PasswordFieldRedondeado.java
 C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\components\TextFieldRedondeado.java
 C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\configuration\Conexion.java
+C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\DAO\ConfiguracionCuotaDAO.java
+C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\logic\ConfiguracionCuotaController.java
+C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\logic\LoginController.java
 C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\logic\Validaciones.java
 C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\model\Clases.java
+C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\model\ConfiguracionCuotaModel.java
 C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\CasasMorosas.java
 C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\ConfiguracionCuota.java
 C:\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\ui\estadoCuenta.java

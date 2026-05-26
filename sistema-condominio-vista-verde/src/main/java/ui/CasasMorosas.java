@@ -17,6 +17,7 @@ public class CasasMorosas extends javax.swing.JFrame {
      */
     public CasasMorosas() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -102,6 +103,7 @@ public class CasasMorosas extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(204, 204, 204));
         jButton1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jButton1.setText("←Volver al Inicio");
+        jButton1.addActionListener(this::jButton1ActionPerformed);
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(161, 0, 0));
@@ -369,6 +371,12 @@ public class CasasMorosas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        new menuPrincipal().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
