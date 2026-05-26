@@ -38,4 +38,26 @@ public class ConfiguracionCuotaDAO {
         }
     }
     
+    // NUEVO MÉTODO: Para leer la cuota actual al abrir la ventana
+    public float obtenerCuotaActual() {
+        float cuota = 0.0f;
+        String sql = "SELECT cuota_actual FROM Configuracion WHERE id_config = 1";
+
+        Connection con = Conexion.getInstance().getConnection();
+
+        // Agregamos ResultSet en el try porque este sí lee datos
+        try (PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            if (rs.next()) {
+                cuota = rs.getFloat("cuota_actual");
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error al obtener la cuota: " + e.getMessage());
+        }
+
+        return cuota;
+    }
+    
 }
