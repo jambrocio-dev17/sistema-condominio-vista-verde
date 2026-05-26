@@ -62,4 +62,22 @@ public class CasasMorosasDAO {
         return lista;
     }
     
+    /** Cuenta cuántas casas no han pagado en el mes/año dado. */
+    public int contarMorosas(int mes, int anio) {
+        String sql = "SELECT COUNT(*) FROM Casa "
+                   + "WHERE numero_casa NOT IN ("
+                   + "    SELECT numero_casa FROM Pago WHERE mes = ? AND anio = ?"
+                   + ")";
+        Connection con = Conexion.getInstance().getConnection();
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, mes);
+            ps.setInt(2, anio);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al contar morosas: " + e.getMessage());
+        }
+        return 0;
+    }
 }
