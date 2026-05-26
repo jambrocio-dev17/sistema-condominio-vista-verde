@@ -10,6 +10,7 @@ import components.PanelSoloBorde;
 import components.PasswordFieldRedondeado;
 import components.TextFieldRedondeado;
 import javax.swing.JOptionPane;
+import logic.LoginController;
 
 /**
  *
@@ -17,7 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class Login extends javax.swing.JFrame {
     
-    
+    LoginController lgController = new LoginController();
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Login.class.getName());
     
@@ -40,15 +41,14 @@ public class Login extends javax.swing.JFrame {
         jPanel3 = new components.PanelRedondeado(150);
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new components.PanelSoloBorde(30, new java.awt.Color(102, 255, 102), 2);
-        jTextField1 = new components.PasswordFieldRedondeado(15, "Ingrese su contraseña");
-        jTextField2 = new TextFieldRedondeado(15, "Ingrese su usuario");
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jButton1 = new components.BotonRedondeado(20);
+        txtEscribirContraseña = new components.PasswordFieldRedondeado(15, "Ingrese su contraseña");
+        txtEscribirUsuario = new TextFieldRedondeado(15, "Ingrese su usuario");
+        lblLogin = new javax.swing.JLabel();
+        lblNombreCondominio = new javax.swing.JLabel();
+        lblPanelAdministrador = new javax.swing.JLabel();
+        lblNombreUsuario = new javax.swing.JLabel();
+        lblContraseña = new javax.swing.JLabel();
+        btnIngresarSistema = new components.BotonRedondeado(20);
         jSeparator1 = new javax.swing.JSeparator();
         jToggleButton1 = new javax.swing.JToggleButton();
 
@@ -82,33 +82,33 @@ public class Login extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        jTextField2.addActionListener(this::jTextField2ActionPerformed);
+        txtEscribirContraseña.addActionListener(this::txtEscribirContraseñaActionPerformed);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jLabel1.setText("Login");
+        txtEscribirUsuario.addActionListener(this::txtEscribirUsuarioActionPerformed);
 
-        jLabel2.setText("Principal");
+        lblLogin.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        lblLogin.setText("Login");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 102, 51));
-        jLabel3.setText("Condominio VIsta Verde");
+        lblNombreCondominio.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblNombreCondominio.setForeground(new java.awt.Color(0, 102, 51));
+        lblNombreCondominio.setText("Condominio Vista Verde");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel4.setText("PANEL DEL ADMINISTRADOR");
+        lblPanelAdministrador.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblPanelAdministrador.setText("PANEL DEL ADMINISTRADOR");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 102, 51));
-        jLabel5.setText("Usuario");
+        lblNombreUsuario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblNombreUsuario.setForeground(new java.awt.Color(0, 102, 51));
+        lblNombreUsuario.setText("Usuario");
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 102, 51));
-        jLabel6.setText("Contraseña");
+        lblContraseña.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblContraseña.setForeground(new java.awt.Color(0, 102, 51));
+        lblContraseña.setText("Contraseña");
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Ingresar al Sistema");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        btnIngresarSistema.setBackground(new java.awt.Color(0, 0, 0));
+        btnIngresarSistema.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnIngresarSistema.setForeground(new java.awt.Color(255, 255, 255));
+        btnIngresarSistema.setText("Ingresar al Sistema");
+        btnIngresarSistema.addActionListener(this::btnIngresarSistemaActionPerformed);
 
         jSeparator1.setForeground(new java.awt.Color(0, 204, 102));
 
@@ -125,16 +125,16 @@ public class Login extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(85, 85, 85)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNombreCondominio, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lblContraseña, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGap(127, 127, 127))
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(lblNombreUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtEscribirContraseña, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnIngresarSistema, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtEscribirUsuario, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel5Layout.createSequentialGroup()
@@ -142,40 +142,34 @@ public class Login extends javax.swing.JFrame {
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(158, 158, 158)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(lblLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(39, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblPanelAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(99, 99, 99))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel2)
-                .addGap(30, 30, 30)
-                .addComponent(jLabel3)
+                .addGap(73, 73, 73)
+                .addComponent(lblNombreCondominio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addComponent(lblPanelAdministrador)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(lblLogin)
                 .addGap(36, 36, 36)
-                .addComponent(jLabel5)
+                .addComponent(lblNombreUsuario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtEscribirUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
+                .addComponent(lblContraseña)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEscribirContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnIngresarSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45))
@@ -239,13 +233,13 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtEscribirUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEscribirUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtEscribirUsuarioActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // 1. Convertimos (casteamos) tu variable a JPasswordField para que reconozca los métodos
-        javax.swing.JPasswordField campoContrasena = (javax.swing.JPasswordField) jTextField1;
+        javax.swing.JPasswordField campoContrasena = (javax.swing.JPasswordField) txtEscribirContraseña;
 
         // 2. Ahora usamos la nueva variable 'campoContrasena' en lugar de 'jTextField1'
         String pass = String.valueOf(campoContrasena.getPassword());
@@ -260,24 +254,32 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnIngresarSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarSistemaActionPerformed
+        String usuario = txtEscribirUsuario.getText();
+        String password = txtEscribirContraseña.getText();
+        
+        lgController.procesarIngreso(usuario, password);
+// TODO add your handling code here:
+//        String usuario = txtEscribirUsuario.getText().trim();
+//        String contrasena = txtEscribirContraseña.getText().trim();
+//
+//        System.out.println("Usuario: " + usuario);
+//        System.out.println("Contrasena: " + contrasena);
+//
+//        if (usuario.equals("admin") && contrasena.equals("1234")) {
+//            new menuPrincipal().setVisible(true);
+//            this.dispose();
+//        } else {
+//            JOptionPane.showMessageDialog(this,
+//                "Usuario o contraseña incorrectos",
+//                "Error de acceso",
+//                JOptionPane.ERROR_MESSAGE);
+//        }
+    }//GEN-LAST:event_btnIngresarSistemaActionPerformed
+
+    private void txtEscribirContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEscribirContraseñaActionPerformed
         // TODO add your handling code here:
-        String usuario = jTextField2.getText().trim();
-        String contrasena = jTextField1.getText().trim();
-
-        System.out.println("Usuario: " + usuario);
-        System.out.println("Contrasena: " + contrasena);
-
-        if (usuario.equals("admin") && contrasena.equals("1234")) {
-            new menuPrincipal().setVisible(true);
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(this,
-                "Usuario o contraseña incorrectos",
-                "Error de acceso",
-                JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_txtEscribirContraseñaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -305,21 +307,20 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JButton btnIngresarSistema;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JLabel lblContraseña;
+    private javax.swing.JLabel lblLogin;
+    private javax.swing.JLabel lblNombreCondominio;
+    private javax.swing.JLabel lblNombreUsuario;
+    private javax.swing.JLabel lblPanelAdministrador;
+    private javax.swing.JTextField txtEscribirContraseña;
+    private javax.swing.JTextField txtEscribirUsuario;
     // End of variables declaration//GEN-END:variables
 }

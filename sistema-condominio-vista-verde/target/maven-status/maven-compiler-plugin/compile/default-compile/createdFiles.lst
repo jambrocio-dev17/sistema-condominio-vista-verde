@@ -1,14 +1,14 @@
-<<<<<<< HEAD
-=======
+logic\LoginController.class
 ui\reporte_general.class
+DAO\ConfiguracionCuotaDAO.class
 ui\CasasMorosas.class
 ui\ConfiguracionCuota$1.class
 components\FondoVerde.class
-ui\CasasMorosas$1.class
 ui\menuPrincipal.class
 components\BotonRedondeado.class
 configuration\Conexion.class
 components\PasswordFieldRedondeado$1.class
+logic\ConfiguracionCuotaController.class
 logic\Validaciones.class
 components\PanelSoloBorde.class
 ui\RegistroPropietario.class
@@ -18,7 +18,8 @@ ui\ConfiguracionCuota.class
 com\mycompany\sistema\condominio\vista\verde\SistemaCondominioVistaVerde.class
 components\TextFieldRedondeado$1.class
 ui\Login.class
+model\ConfiguracionCuotaModel.class
 components\TextFieldRedondeado.class
 ui\estadoCuenta.class
+ui\reporte_general$1.class
 components\PanelRedondeado.class
->>>>>>> develop
