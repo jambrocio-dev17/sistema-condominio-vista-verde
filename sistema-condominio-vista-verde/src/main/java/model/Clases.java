@@ -6,7 +6,7 @@ package model;
 
 /**
  *
- * @author Josue Ambrocio
+ * @author mc296
  */
 public class Clases {
     
