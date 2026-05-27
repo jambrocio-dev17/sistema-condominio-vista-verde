@@ -17,8 +17,6 @@ public class ConfiguracionCuotaController {
         this.dao = dao;
         this.vista = vista;
         
-        // Aquí le decimos a los botones de la vista que este controlador escuchará sus clics
-        // this.vista.btnGuardar.addActionListener(this);
     }
     
     public float getCuotaActual() {
@@ -27,7 +25,6 @@ public class ConfiguracionCuotaController {
     }
 
     public float calcularRecaudacionEsperada(float cuota) {
-        // Son 30 casas en Vista Verde
         return cuota * 30; 
     }
 
@@ -53,4 +50,5 @@ public class ConfiguracionCuotaController {
         // vista.txtId.setText("");
         // vista.txtMonto.setText("");
     }
+    //its not working now
 }
