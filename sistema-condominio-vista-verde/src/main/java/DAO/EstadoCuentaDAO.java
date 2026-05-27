@@ -45,3 +45,30 @@ public class EstadoCuentaDAO {
         }
         return lista;
     }
+    /**
+     * Devuelve los meses pendientes de una casa en un año dado.
+     * Un mes es pendiente si no existe registro de pago para él.
+     */
+    public ArrayList<Object[]> listarPendientes(int numeroCasa, int anio) {
+        Set<Integer> mesesPagados = new HashSet<>();
+        String sql = "SELECT mes FROM Pago WHERE numero_casa = ? AND anio = ?";
+        Connection con = Conexion.getInstance().getConnection();
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, numeroCasa);
+            ps.setInt(2, anio);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) mesesPagados.add(rs.getInt("mes"));
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al listar pendientes: " + e.getMessage());
+        }
+
+        ArrayList<Object[]> pendientes = new ArrayList<>();
+        for (int m = 1; m <= 12; m++) {
+            if (!mesesPagados.contains(m)) {
+                pendientes.add(new Object[]{NOMBRES_MES[m - 1], "Pendiente", "-"});
+            }
+        }
+        return pendientes;
+    }
+}
