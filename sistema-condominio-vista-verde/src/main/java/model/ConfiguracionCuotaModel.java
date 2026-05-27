@@ -6,7 +6,7 @@ package model;
 
 /**
  *
- * @author adolf
+ * @author elena
  */
 public class ConfiguracionCuotaModel {
     private int id;
@@ -24,3 +24,5 @@ public class ConfiguracionCuotaModel {
     public float getMonto() { return monto;}
     public void setMonto(float monto) { this.monto = monto;}
 }
+    
+
