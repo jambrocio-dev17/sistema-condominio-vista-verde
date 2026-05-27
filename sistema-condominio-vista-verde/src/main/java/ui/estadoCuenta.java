@@ -11,15 +11,20 @@ package ui;
 public class estadoCuenta extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(estadoCuenta.class.getName());
-
+    private logic.EstadoCuentaController controller;
     /**
      * Creates new form Vistas
      */
     public estadoCuenta() {
         initComponents();
         this.setLocationRelativeTo(null);
+        controller = new logic.EstadoCuentaController(this);
     }
 
+    // Getters para que el controlador actualice las tablas
+    public javax.swing.JTable getTablePagados()    { return jTable1; }
+    public javax.swing.JTable getTablePendientes() { return jtbTablaMesesPendientes; }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
