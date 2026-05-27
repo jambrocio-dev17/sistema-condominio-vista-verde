@@ -19,11 +19,53 @@ public class estadoCuenta extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         controller = new logic.EstadoCuentaController(this);
+        agregarBarraExportacion();
     }
 
-    // Getters para que el controlador actualice las tablas
-    public javax.swing.JTable getTablePagados()    { return jTable1; }
-    public javax.swing.JTable getTablePendientes() { return jtbTablaMesesPendientes; }
+    // ── Getters para que el controlador actualice la vista ──
+    public javax.swing.JTable getTablePagados()              { return jTable1; }
+    public javax.swing.JTable getTablePendientes()           { return jtbTablaMesesPendientes; }
+    public javax.swing.JLabel getLblInicialesPersonaBuscada(){ return lblInicialesPersonaBuscada; }
+    public javax.swing.JLabel getLblDatosBuscados()          { return lblDatosBuscados; }
+    public javax.swing.JLabel getLblCantidadPersona()        { return lblCantidadPersona; }
+
+    private void agregarBarraExportacion() {
+        javax.swing.JPanel toolbar = new javax.swing.JPanel(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 8, 4));
+        toolbar.setBackground(new java.awt.Color(45, 90, 30));
+
+        javax.swing.JButton btnPdf = new javax.swing.JButton("Exportar PDF");
+        btnPdf.setBackground(java.awt.Color.WHITE);
+        btnPdf.setForeground(new java.awt.Color(45, 90, 30));
+        btnPdf.setFont(new java.awt.Font("SansSerif", java.awt.Font.BOLD, 11));
+        btnPdf.addActionListener(e -> exportarPDF());
+
+        toolbar.add(btnPdf);
+
+        // Envolver el contenido existente con BorderLayout
+        javax.swing.JPanel wrapper = new javax.swing.JPanel(new java.awt.BorderLayout());
+        wrapper.setBackground(new java.awt.Color(26, 58, 10));
+        getContentPane().remove(jPanel1);
+        wrapper.add(jPanel1, java.awt.BorderLayout.CENTER);
+        wrapper.add(toolbar, java.awt.BorderLayout.SOUTH);
+        setContentPane(wrapper);
+        pack();
+    }
+
+    private void exportarPDF() {
+        if (controller.getUltimoNumeroCasa() == 0) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "Primero consulte una casa.", "Sin datos",
+                javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        logic.ReportGenerator.exportarEstadoCuentaPDF(
+            controller.getUltimoNumeroCasa(),
+            controller.getUltimoPropietario(),
+            controller.getUltimoAnio(),
+            controller.getUltimosPagados(),
+            controller.getUltimosPendientes(),
+            this);
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -435,11 +477,20 @@ public class estadoCuenta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverInicioActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        int idx = jcbSeleccionarCasa.getSelectedIndex();
+        if (idx < 0 || idx >= 30) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "Seleccione una casa válida (Casa 1 – Casa 30).",
+                "Validación", javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        int numeroCasa = idx + 1;
+        int anio = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR);
+        controller.consultar(numeroCasa, anio);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
+        // auto-refresh cuando cambia la casa (opcional, se activa con Consultar)
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**

@@ -75,5 +75,39 @@ public class EstadoCuentaController {
         };
         for (Object[] fila : pendientes) modeloPendientes.addRow(fila);
         vista.getTablePendientes().setModel(modeloPendientes);
+
+        // Actualizar panel del propietario
+        actualizarPanelPropietario(numeroCasa, prop, pagados, anio);
+    }
+
+    private void actualizarPanelPropietario(int numeroCasa, PropietarioModel prop,
+                                             ArrayList<Object[]> pagados, int anio) {
+        String nombre   = (prop != null) ? prop.getNombreCompleto() : "Sin propietario";
+        String telefono = (prop != null && prop.getTelefono() != null) ? prop.getTelefono() : "-";
+        String correo   = (prop != null && prop.getCorreo()   != null) ? prop.getCorreo()   : "-";
+
+        vista.getLblInicialesPersonaBuscada().setText(iniciales(nombre));
+        vista.getLblDatosBuscados().setText(
+            "<html><b style='color:white; font-size:11px;'>" + nombre + "</b>" +
+            "<br><span style='color:#8fcc6f; font-size:9px;'>Casa No. " + numeroCasa +
+            " - " + telefono + " - " + correo + "</span></html>");
+
+        double total = 0;
+        for (Object[] fila : pagados) {
+            if (fila.length > 2 && fila[2] != null) {
+                try {
+                    String s = fila[2].toString().replace("Q", "").replace(",", "").trim();
+                    total += Double.parseDouble(s);
+                } catch (NumberFormatException ignored) {}
+            }
+        }
+        vista.getLblCantidadPersona().setText(String.format("Q%,.2f", total));
+    }
+
+    private String iniciales(String nombre) {
+        if (nombre == null || nombre.isBlank()) return "?";
+        String[] partes = nombre.trim().split("\\s+");
+        if (partes.length == 1) return partes[0].substring(0, 1).toUpperCase();
+        return (partes[0].substring(0, 1) + partes[1].substring(0, 1)).toUpperCase();
     }
 }

@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Recurse -Path \"c:\\\\Working\\\\Proyecto Final- New changes\\\\sistema-condominio-vista-verde\" -Directory)",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(Sort-Object)"
+    ]
+  }
+}

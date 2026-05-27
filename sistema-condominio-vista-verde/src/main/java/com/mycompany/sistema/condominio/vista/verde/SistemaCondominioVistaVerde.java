@@ -11,8 +11,12 @@ import ui.Login;
 public class SistemaCondominioVistaVerde {
 
     public static void main(String[] args) {
-        Login login = new Login();
-        login.setLocationRelativeTo(null);
-        login.setVisible(true);
+        logic.ThemeManager.aplicarTema();
+        configuration.DatabaseInitializer.inicializar();
+        java.awt.EventQueue.invokeLater(() -> {
+            Login login = new Login();
+            login.setLocationRelativeTo(null);
+            login.setVisible(true);
+        });
     }
 }

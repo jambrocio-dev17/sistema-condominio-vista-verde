@@ -18,6 +18,54 @@ public class menuPrincipal extends javax.swing.JFrame {
     public menuPrincipal() {
         initComponents();
         this.setLocationRelativeTo(null);
+        agregarBotonTema();
+        actualizarFechaHeader();
+        cargarDashboard();
+    }
+
+    private void agregarBotonTema() {
+        javax.swing.JButton btnTema = new javax.swing.JButton("Cambiar Tema");
+        btnTema.setFont(new java.awt.Font("SansSerif", 0, 11));
+        btnTema.setForeground(new java.awt.Color(255, 255, 255));
+        btnTema.setBackground(new java.awt.Color(30, 70, 18));
+        btnTema.setFocusPainted(false);
+        btnTema.setBorderPainted(false);
+        btnTema.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnTema.addActionListener(e -> logic.ThemeManager.mostrarSelectorTema(menuPrincipal.this));
+        pnlHeader.add(btnTema);
+        btnTema.setBounds(450, 20, 120, 34);
+        pnlHeader.revalidate();
+        pnlHeader.repaint();
+    }
+
+    private void actualizarFechaHeader() {
+        java.time.LocalDate hoy = java.time.LocalDate.now();
+        String[] meses = {"Enero","Febrero","Marzo","Abril","Mayo","Junio",
+                          "Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"};
+        String[] dias  = {"Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"};
+        String mes  = meses[hoy.getMonthValue() - 1];
+        String dia  = dias[hoy.getDayOfWeek().getValue() % 7];
+        lblNombreCondominio.setText(
+            "<html><b style='color:white; font-size:11px;'>Condominio Vista Verde</b>" +
+            "<br><span style='color:#8fcc6f; font-size:9px;'>" +
+            mes + " " + hoy.getYear() + " - " + dia + " " + hoy.getDayOfMonth() +
+            "</span></html>");
+    }
+
+    private void cargarDashboard() {
+        try {
+            java.util.Calendar cal = java.util.Calendar.getInstance();
+            int mes  = cal.get(java.util.Calendar.MONTH) + 1;
+            int anio = cal.get(java.util.Calendar.YEAR);
+            DAO.CasasMorosasDAO dao = new DAO.CasasMorosasDAO();
+            int morosas    = dao.contarMorosas(mes, anio);
+            int pagosAlDia = 30 - morosas;
+            lblNumCasasTotales.setText("30");
+            lblNumPagosAlDia.setText(String.valueOf(Math.max(0, pagosAlDia)));
+            lblNumCasasMorosas.setText(String.valueOf(morosas));
+        } catch (Exception ex) {
+            System.err.println("Error al cargar dashboard: " + ex.getMessage());
+        }
     }
 
     /**
