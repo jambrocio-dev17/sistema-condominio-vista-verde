@@ -19,6 +19,12 @@ public class PropietarioController {
                 "Campos requeridos", JOptionPane.WARNING_MESSAGE);
             return false;
         }
+        String errorCorreo = EmailService.validarCorreo(correo);
+        if (errorCorreo != null) {
+            JOptionPane.showMessageDialog(null, errorCorreo,
+                "Correo inválido", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
         PropietarioModel p = new PropietarioModel(nombre, dpi, telefono, correo, numeroCasa);
         boolean ok = dao.registrar(p);
         if (ok) {
@@ -35,6 +41,12 @@ public class PropietarioController {
 
     public boolean actualizar(String nombre, String dpi, String telefono,
                               String correo, int numeroCasa) {
+        String errorCorreo = EmailService.validarCorreo(correo);
+        if (errorCorreo != null) {
+            JOptionPane.showMessageDialog(null, errorCorreo,
+                "Correo inválido", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
         PropietarioModel p = new PropietarioModel(nombre, dpi, telefono, correo, numeroCasa);
         boolean ok = dao.actualizar(p);
         if (ok) {

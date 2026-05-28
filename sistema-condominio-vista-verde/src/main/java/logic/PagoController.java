@@ -1,16 +1,18 @@
 package logic;
 
-import DAO.ConfiguracionCuotaDAO; // Importación corregida
+import DAO.ConfiguracionCuotaDAO;
 import DAO.PagoDAO;
+import DAO.PropietarioDAO;
 import model.PagoModel;
+import model.PropietarioModel;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class PagoController {
 
     private final PagoDAO pagoDAO = new PagoDAO();
-    // Usamos el DAO que ya construimos juntos
-    private final ConfiguracionCuotaDAO confDAO = new ConfiguracionCuotaDAO(); 
+    private final ConfiguracionCuotaDAO confDAO = new ConfiguracionCuotaDAO();
+    private final PropietarioDAO propietarioDAO = new PropietarioDAO();
 
     public boolean registrar(int numeroCasa, int mes, int anio) {
         if (numeroCasa <= 0 || mes <= 0 || anio <= 0) {
@@ -37,6 +39,14 @@ public class PagoController {
             JOptionPane.showMessageDialog(null,
                 "Pago registrado correctamente — Q " + String.format("%.2f", cuota),
                 "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            PropietarioModel propietario = propietarioDAO.buscarPorCasa(numeroCasa);
+            if (propietario != null) {
+                EmailService.enviarConfirmacionPago(
+                    propietario.getCorreo(),
+                    propietario.getNombreCompleto(),
+                    numeroCasa, mes, anio, cuota
+                );
+            }
         } else {
             JOptionPane.showMessageDialog(null,
                 "No se pudo registrar el pago.",
