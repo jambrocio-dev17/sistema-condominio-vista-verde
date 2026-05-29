@@ -15,10 +15,13 @@ C:\Working\Proyecto Final- New changes\sistema-condominio-vista-verde\sistema-co
 C:\Working\Proyecto Final- New changes\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\DAO\PropietarioDAO.java
 C:\Working\Proyecto Final- New changes\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\logic\CasasMorosasController.java
 C:\Working\Proyecto Final- New changes\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\logic\ConfiguracionCuotaController.java
+C:\Working\Proyecto Final- New changes\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\logic\EmailService.java
 C:\Working\Proyecto Final- New changes\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\logic\EstadoCuentaController.java
 C:\Working\Proyecto Final- New changes\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\logic\LoginController.java
 C:\Working\Proyecto Final- New changes\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\logic\PagoController.java
 C:\Working\Proyecto Final- New changes\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\logic\PropietarioController.java
+C:\Working\Proyecto Final- New changes\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\logic\ReportGenerator.java
+C:\Working\Proyecto Final- New changes\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\logic\ThemeManager.java
 C:\Working\Proyecto Final- New changes\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\logic\Validaciones.java
 C:\Working\Proyecto Final- New changes\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\model\CasaModel.java
 C:\Working\Proyecto Final- New changes\sistema-condominio-vista-verde\sistema-condominio-vista-verde\src\main\java\model\CasaMorosaModel.java

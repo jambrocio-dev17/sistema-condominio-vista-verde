@@ -11,9 +11,9 @@ import javax.naming.directory.InitialDirContext;
 
 public class EmailService {
 
-    private static final String HOST     = "smtp.office365.com";
+    private static final String HOST     = "smtp.gmail.com";
     private static final int    PORT     = 587;
-    private static final String FROM     = "condominiovistaverde2026@outlook.com";
+    private static final String FROM     = "adolfobank123@gmail.com";
     
     // AQUÍ ESTÁ EL CAMBIO: Leemos la contraseña del sistema, no del código.
     private static final String PASSWORD = System.getenv("EMAIL_PASSWORD");
