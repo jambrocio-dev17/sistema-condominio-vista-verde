@@ -21,6 +21,7 @@ public class ConfiguracionCuota extends javax.swing.JFrame {
         getContentPane().setBackground(new java.awt.Color(26, 58, 10));
         setLocationRelativeTo(null);
         configurarBoton();
+        configurarCampoMonto();
     }
 
     private void configurarBoton() {
@@ -41,6 +42,24 @@ public class ConfiguracionCuota extends javax.swing.JFrame {
         });
     }
     
+    private void configurarCampoMonto() {
+        ((javax.swing.text.AbstractDocument) txtMontoMensual.getDocument())
+            .setDocumentFilter(new javax.swing.text.DocumentFilter() {
+                @Override
+                public void insertString(FilterBypass fb, int offset, String string,
+                        javax.swing.text.AttributeSet attr) throws javax.swing.text.BadLocationException {
+                    if (string.matches("[0-9.]*"))
+                        super.insertString(fb, offset, string, attr);
+                }
+                @Override
+                public void replace(FilterBypass fb, int offset, int length, String text,
+                        javax.swing.text.AttributeSet attrs) throws javax.swing.text.BadLocationException {
+                    if (text.matches("[0-9.]*"))
+                        super.replace(fb, offset, length, text, attrs);
+                }
+            });
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

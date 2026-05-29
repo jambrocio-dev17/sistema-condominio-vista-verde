@@ -18,6 +18,8 @@ public class RegistroPropietario extends javax.swing.JFrame {
     public RegistroPropietario() {
         initComponents();
         this.setLocationRelativeTo(null);
+        configurarCampos();
+        configurarBotones();
     }
 
     /**
@@ -302,6 +304,70 @@ public class RegistroPropietario extends javax.swing.JFrame {
     private void txtEscribirDpiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEscribirDpiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEscribirDpiActionPerformed
+
+    private void configurarCampos() {
+        String[] casas = new String[30];
+        for (int i = 0; i < 30; i++) casas[i] = "Casa " + (i + 1);
+        jcbSeleccionarCasa.setModel(new javax.swing.DefaultComboBoxModel<>(casas));
+
+        ((javax.swing.text.AbstractDocument) txtEscribirDpi.getDocument())
+            .setDocumentFilter(new javax.swing.text.DocumentFilter() {
+                @Override
+                public void insertString(FilterBypass fb, int offset, String string,
+                        javax.swing.text.AttributeSet attr) throws javax.swing.text.BadLocationException {
+                    if (string.matches("\\d*") && fb.getDocument().getLength() + string.length() <= 13)
+                        super.insertString(fb, offset, string, attr);
+                }
+                @Override
+                public void replace(FilterBypass fb, int offset, int length, String text,
+                        javax.swing.text.AttributeSet attrs) throws javax.swing.text.BadLocationException {
+                    if (text.matches("\\d*") && fb.getDocument().getLength() - length + text.length() <= 13)
+                        super.replace(fb, offset, length, text, attrs);
+                }
+            });
+
+        ((javax.swing.text.AbstractDocument) txtEscribirNumero.getDocument())
+            .setDocumentFilter(new javax.swing.text.DocumentFilter() {
+                @Override
+                public void insertString(FilterBypass fb, int offset, String string,
+                        javax.swing.text.AttributeSet attr) throws javax.swing.text.BadLocationException {
+                    if (string.matches("\\d*") && fb.getDocument().getLength() + string.length() <= 8)
+                        super.insertString(fb, offset, string, attr);
+                }
+                @Override
+                public void replace(FilterBypass fb, int offset, int length, String text,
+                        javax.swing.text.AttributeSet attrs) throws javax.swing.text.BadLocationException {
+                    if (text.matches("\\d*") && fb.getDocument().getLength() - length + text.length() <= 8)
+                        super.replace(fb, offset, length, text, attrs);
+                }
+            });
+    }
+
+    private void configurarBotones() {
+        logic.PropietarioController controller = new logic.PropietarioController();
+
+        btnGuardar.addActionListener(e -> {
+            String nombre = txtEscribirNombre.getText().trim();
+            String dpi = txtEscribirDpi.getText().trim();
+            String telefono = txtEscribirNumero.getText().trim();
+            String correo = txtEscribirCorreo.getText().trim();
+            String casaSeleccionada = (String) jcbSeleccionarCasa.getSelectedItem();
+            int numeroCasa = Integer.parseInt(casaSeleccionada.replaceAll("[^0-9]", ""));
+            if (controller.guardar(nombre, dpi, telefono, correo, numeroCasa)) {
+                limpiarCampos();
+            }
+        });
+
+        btnCancelar.addActionListener(e -> limpiarCampos());
+    }
+
+    private void limpiarCampos() {
+        txtEscribirNombre.setText("");
+        txtEscribirDpi.setText("");
+        txtEscribirNumero.setText("");
+        txtEscribirCorreo.setText("");
+        jcbSeleccionarCasa.setSelectedIndex(0);
+    }
 
     /**
      * @param args the command line arguments

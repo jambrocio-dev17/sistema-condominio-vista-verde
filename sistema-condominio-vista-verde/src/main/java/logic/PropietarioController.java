@@ -11,12 +11,34 @@ public class PropietarioController {
 
     public boolean guardar(String nombre, String dpi, String telefono,
                            String correo, int numeroCasa) {
-        if (nombre == null || nombre.isBlank() ||
-            dpi    == null || dpi.isBlank()    ||
-            numeroCasa <= 0) {
+        if (nombre == null || nombre.isBlank() || nombre.trim().split("\\s+").length < 2) {
             JOptionPane.showMessageDialog(null,
-                "Nombre completo, DPI y número de casa son obligatorios.",
-                "Campos requeridos", JOptionPane.WARNING_MESSAGE);
+                "El nombre debe contener al menos dos palabras.",
+                "Nombre inválido", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        if (dpi == null || !dpi.matches("\\d{13}")) {
+            JOptionPane.showMessageDialog(null,
+                "El DPI debe contener exactamente 13 dígitos.",
+                "DPI inválido", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        if (dao.existeDpi(dpi)) {
+            JOptionPane.showMessageDialog(null,
+                "El DPI ingresado ya está registrado.",
+                "DPI duplicado", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        if (telefono == null || !telefono.matches("\\d{8}")) {
+            JOptionPane.showMessageDialog(null,
+                "El teléfono debe contener exactamente 8 dígitos.",
+                "Teléfono inválido", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        if (numeroCasa <= 0) {
+            JOptionPane.showMessageDialog(null,
+                "Debe seleccionar un número de casa válido.",
+                "Casa inválida", JOptionPane.WARNING_MESSAGE);
             return false;
         }
         String errorCorreo = EmailService.validarCorreo(correo);
@@ -41,6 +63,24 @@ public class PropietarioController {
 
     public boolean actualizar(String nombre, String dpi, String telefono,
                               String correo, int numeroCasa) {
+        if (nombre == null || nombre.isBlank() || nombre.trim().split("\\s+").length < 2) {
+            JOptionPane.showMessageDialog(null,
+                "El nombre debe contener al menos dos palabras.",
+                "Nombre inválido", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        if (dpi == null || !dpi.matches("\\d{13}")) {
+            JOptionPane.showMessageDialog(null,
+                "El DPI debe contener exactamente 13 dígitos.",
+                "DPI inválido", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        if (telefono == null || !telefono.matches("\\d{8}")) {
+            JOptionPane.showMessageDialog(null,
+                "El teléfono debe contener exactamente 8 dígitos.",
+                "Teléfono inválido", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
         String errorCorreo = EmailService.validarCorreo(correo);
         if (errorCorreo != null) {
             JOptionPane.showMessageDialog(null, errorCorreo,
