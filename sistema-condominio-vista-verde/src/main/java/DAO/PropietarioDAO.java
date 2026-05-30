@@ -111,6 +111,20 @@ public class PropietarioDAO {
         }
     }
 
+    public boolean existeDpi(String dpi) {
+        String sql = "SELECT COUNT(*) FROM Propietario WHERE dpi = ?";
+        Connection con = Conexion.getInstance().getConnection();
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, dpi);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al verificar DPI: " + e.getMessage());
+        }
+        return false;
+    }
+
     private PropietarioModel mapear(ResultSet rs) throws SQLException {
         PropietarioModel p = new PropietarioModel();
         p.setId(rs.getInt("id_propietario"));

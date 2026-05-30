@@ -18,11 +18,18 @@ import javax.swing.table.DefaultTableModel;
  * @author mc296
  */
 public class reporte_general extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(reporte_general.class.getName());
 
-    
-    private static final String DB_URL = "jdbc:postgresql://localhost:5432/vista_verde";
+    private static final java.util.logging.Logger logger =
+            java.util.logging.Logger.getLogger(reporte_general.class.getName());
+
+    // Datos del último reporte cargado (para exportar)
+    private javax.swing.table.DefaultTableModel modeloActual;
+    private double recaudadoActual;
+    private double esperadoActual;
+    private int    mesActual;
+    private int    anioActual;
+
+    private static final String DB_URL  = "jdbc:postgresql://localhost:5432/vista_verde";
     private static final String DB_USER = "postgres";
     private static final String DB_PASS = "Elfogg2006.";
 
@@ -31,78 +38,81 @@ public class reporte_general extends javax.swing.JFrame {
     }
 
     private void cargarReporte() {
-        // Mes y año actual
-        Calendar cal = Calendar.getInstance();
-        int mesActual = cal.get(Calendar.MONTH) + 1; // Calendar empieza en 0
-        int anioActual = cal.get(Calendar.YEAR);
+        Calendar cal    = Calendar.getInstance();
+        int mes         = cal.get(Calendar.MONTH) + 1;
+        int anio        = cal.get(Calendar.YEAR);
 
-        // Consulta: cada casa con su propietario y el pago del mes (si existe)
         String sql =
             "SELECT c.numero_casa, " +
             "       COALESCE(p.nombre_completo, '(Sin propietario)') AS propietario, " +
-            "       COALESCE(p.dpi, '-')   AS dpi, " +
+            "       COALESCE(p.dpi, '-')    AS dpi, " +
             "       COALESCE(p.correo, '-') AS correo, " +
             "       COALESCE(pa.estado, 'Pendiente') AS estado, " +
             "       COALESCE(pa.monto, (SELECT cuota_actual FROM Configuracion LIMIT 1)) AS total " +
             "FROM Casa c " +
-            "LEFT JOIN Propietario p ON p.numero_casa = c.numero_casa " +
-            "LEFT JOIN Pago pa ON pa.numero_casa = c.numero_casa " +
-            "                  AND pa.mes = ? AND pa.anio = ? " +
+            "LEFT JOIN Propietario p  ON p.numero_casa  = c.numero_casa " +
+            "LEFT JOIN Pago pa        ON pa.numero_casa = c.numero_casa " +
+            "                        AND pa.mes = ? AND pa.anio = ? " +
             "ORDER BY c.numero_casa";
 
         DefaultTableModel modelo = new DefaultTableModel(
-            new String[]{"N.°", "Propietario", "DPI", "Correo", "Estado", "Total"}, 0
-        ) {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false; // tabla de solo lectura
-            }
+            new String[]{"N.°","Propietario","DPI","Correo","Estado","Total"}, 0) {
+            @Override public boolean isCellEditable(int r, int c) { return false; }
         };
 
         double recaudado = 0.0;
-        double esperado = 0.0;
-        int totalCasas = 0;
+        double esperado  = 0.0;
+        int    totalCasas = 0;
 
         try (Connection con = conectar();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setInt(1, mesActual);
-            ps.setInt(2, anioActual);
+            ps.setInt(1, mes);
+            ps.setInt(2, anio);
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-                    int numCasa = rs.getInt("numero_casa");
-                    String propietario = rs.getString("propietario");
-                    String dpi = rs.getString("dpi");
-                    String correo = rs.getString("correo");
                     String estado = rs.getString("estado");
-                    double total = rs.getDouble("total");
+                    double total  = rs.getDouble("total");
 
                     modelo.addRow(new Object[]{
-                        numCasa, propietario, dpi, correo, estado,
+                        rs.getInt("numero_casa"),
+                        rs.getString("propietario"),
+                        rs.getString("dpi"),
+                        rs.getString("correo"),
+                        estado,
                         String.format("Q%,.2f", total)
                     });
 
                     esperado += total;
-                    if ("Pagado".equalsIgnoreCase(estado)) {
-                        recaudado += total;
-                    }
+                    if ("Pagado".equalsIgnoreCase(estado)) recaudado += total;
                     totalCasas++;
                 }
             }
 
-//            jTable1.setModel(modelo);
-//
-//            double pendiente = esperado - recaudado;
-//            jLabel6.setText(String.format("Q%,.2f", recaudado));
-//            jLabel8.setText(String.format("Q%,.2f", esperado));
-//            jLabel10.setText(String.format("Q%,.2f", pendiente));
-//            jLabel11.setText(totalCasas + " casas registradas");
+            // Actualizar la tabla y los labels con los datos reales
+            jtbDatosReporte.setModel(modelo);
 
-            // Actualiza el título con el mes actual
+            double pendiente = esperado - recaudado;
+            lblCantidadRecaudo.setText(String.format("Q%,.2f", recaudado));
+            lblCantidadTotalEsperado.setText(String.format("Q%,.2f", esperado));
+            lblCantidadPendiente.setText(String.format("Q%,.2f", pendiente));
+            lblTextoCasasRegistradas.setText(totalCasas + " casas registradas");
+
             String[] meses = {"Enero","Febrero","Marzo","Abril","Mayo","Junio",
                               "Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"};
-//            jLabel2.setText("Reporte General — " + meses[mesActual - 1] + " " + anioActual);
+            lblReporteGeneral.setText(
+                "<html><b style='color:white; font-size:11px;'>Reporte General — "
+                + meses[mes - 1] + " " + anio
+                + "</b><br><span style='color:#8fcc6f; font-size:9px;'>Condominio Vista Verde - "
+                + totalCasas + " casas</span></html>");
+
+            // Guardar datos para exportación posterior
+            modeloActual    = modelo;
+            recaudadoActual = recaudado;
+            esperadoActual  = esperado;
+            mesActual       = mes;
+            anioActual      = anio;
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this,
@@ -116,6 +126,7 @@ public class reporte_general extends javax.swing.JFrame {
     public reporte_general() {
         initComponents();
         this.setLocationRelativeTo(null);
+        btnExportarCSV.setText("Exportar Reporte");
         cargarReporte();
     }
 
@@ -378,7 +389,25 @@ public class reporte_general extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExportarCSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarCSVActionPerformed
-        // TODO add your handling code here:
+        if (modeloActual == null || modeloActual.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(this,
+                "No hay datos para exportar.", "Sin datos", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        String[] opciones = {"Exportar PDF", "Exportar Excel", "Cancelar"};
+        int sel = JOptionPane.showOptionDialog(this,
+            "Seleccione el formato de exportación:",
+            "Exportar Reporte General",
+            JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
+            null, opciones, opciones[0]);
+
+        if (sel == 0) {
+            logic.ReportGenerator.exportarReporteGeneralPDF(
+                modeloActual, recaudadoActual, esperadoActual, mesActual, anioActual, this);
+        } else if (sel == 1) {
+            logic.ReportGenerator.exportarReporteGeneralExcel(
+                modeloActual, recaudadoActual, esperadoActual, mesActual, anioActual, this);
+        }
     }//GEN-LAST:event_btnExportarCSVActionPerformed
 
     private void btnVolverInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverInicioActionPerformed

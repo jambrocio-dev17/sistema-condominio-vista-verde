@@ -218,7 +218,6 @@
                                       <Group type="102" attributes="0">
                                           <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                                           <Component id="btnGuardar" min="-2" pref="135" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>

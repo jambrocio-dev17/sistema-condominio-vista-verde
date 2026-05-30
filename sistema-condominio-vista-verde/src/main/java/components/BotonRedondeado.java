@@ -2,8 +2,12 @@ package components;
 
 
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JButton;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 
 public class BotonRedondeado extends JButton {
     private int radius;

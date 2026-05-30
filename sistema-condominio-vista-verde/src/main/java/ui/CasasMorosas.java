@@ -11,14 +11,137 @@ package ui;
 public class CasasMorosas extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CasasMorosas.class.getName());
-
+    private logic.CasasMorosasController controller;
     /**
      * Creates new form CasasMorosas
      */
     public CasasMorosas() {
         initComponents();
         this.setLocationRelativeTo(null);
+        controller = new logic.CasasMorosasController(this);
+        configurarFiltros();
+        agregarBarraExportacion();
     }
+
+    private void agregarBarraExportacion() {
+        javax.swing.JPanel toolbar = new javax.swing.JPanel(
+                new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 8, 4));
+        toolbar.setBackground(new java.awt.Color(100, 20, 20));
+
+        javax.swing.JButton btnPdf = new javax.swing.JButton("Exportar PDF");
+        btnPdf.setBackground(java.awt.Color.WHITE);
+        btnPdf.setForeground(new java.awt.Color(160, 20, 20));
+        btnPdf.setFont(new java.awt.Font("SansSerif", java.awt.Font.BOLD, 11));
+        btnPdf.addActionListener(e -> exportarPDF());
+
+        javax.swing.JButton btnExcel = new javax.swing.JButton("Exportar Excel");
+        btnExcel.setBackground(java.awt.Color.WHITE);
+        btnExcel.setForeground(new java.awt.Color(20, 100, 20));
+        btnExcel.setFont(new java.awt.Font("SansSerif", java.awt.Font.BOLD, 11));
+        btnExcel.addActionListener(e -> exportarExcel());
+
+        toolbar.add(btnExcel);
+        toolbar.add(btnPdf);
+
+        javax.swing.JPanel wrapper = new javax.swing.JPanel(new java.awt.BorderLayout());
+        wrapper.setBackground(new java.awt.Color(26, 58, 10));
+        getContentPane().remove(jPanel1);
+        wrapper.add(jPanel1, java.awt.BorderLayout.CENTER);
+        wrapper.add(toolbar, java.awt.BorderLayout.SOUTH);
+        setContentPane(wrapper);
+        pack();
+    }
+
+    private void exportarPDF() {
+        javax.swing.table.DefaultTableModel modelo =
+                (javax.swing.table.DefaultTableModel) jTable1.getModel();
+        if (modelo.getRowCount() == 0) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "No hay datos para exportar.", "Sin datos",
+                javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        logic.ReportGenerator.exportarCasasMorosasPDF(
+            modelo,
+            controller.getUltimaLista().size(),
+            controller.getUltimoMonto(),
+            controller.getUltimoMes(),
+            controller.getUltimoAnio(),
+            this);
+    }
+
+    private void exportarExcel() {
+        javax.swing.table.DefaultTableModel modelo =
+                (javax.swing.table.DefaultTableModel) jTable1.getModel();
+        if (modelo.getRowCount() == 0) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "No hay datos para exportar.", "Sin datos",
+                javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        logic.ReportGenerator.exportarCasasMorosasExcel(
+            modelo,
+            controller.getUltimaLista().size(),
+            controller.getUltimoMonto(),
+            controller.getUltimoMes(),
+            controller.getUltimoAnio(),
+            this);
+    }
+    
+    private void configurarFiltros() {
+        // Poblar combobox de mes
+        jComboBox1.removeAllItems();
+        String[] meses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+                          "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
+        for (String m : meses) jComboBox1.addItem(m);
+
+        // Poblar combobox de anio
+        jComboBox2.removeAllItems();
+        int anioActual = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR);
+        for (int i = anioActual; i >= anioActual - 5; i--) {
+            jComboBox2.addItem(String.valueOf(i));
+        }
+
+        // Seleccionar mes actual por defecto
+        jComboBox1.setSelectedIndex(java.util.Calendar.getInstance().get(java.util.Calendar.MONTH));
+
+        // Hacer clickeable el panel "Filtrar"
+        jPanel7.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                filtrar();
+            }
+        });
+        jLabel4.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                filtrar();
+            }
+        });
+
+        // Cargar datos del mes actual
+        filtrar();
+    }
+    
+    private void filtrar() {
+        int mes = jComboBox1.getSelectedIndex() + 1;
+        String anioStr = (String) jComboBox2.getSelectedItem();
+        if (anioStr == null) return;
+        int anio = Integer.parseInt(anioStr);
+        jLabel5.setText("Mostrando: " + jComboBox1.getSelectedItem() + " " + anio);
+        controller.cargar(mes, anio);
+        // Actualizar casas al dia (30 - morosas)
+        int morosas = controller.getUltimaLista().size();
+        jLabel11.setText(String.valueOf(30 - morosas));
+    }
+    
+    // Getters para que el controlador actualice la vista
+    public javax.swing.JTable getTableMorosas()  { return jTable1; }
+    public javax.swing.JLabel getLblConteo()      { return jLabel9; }
+    public javax.swing.JLabel getLblMonto()       { return jLabel10; }
+    public javax.swing.JLabel getLblMensaje()     { return jLabel5; }
 
     /**
      * This method is called from within the constructor to initialize the form.

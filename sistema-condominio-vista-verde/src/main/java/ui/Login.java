@@ -255,26 +255,9 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void btnIngresarSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarSistemaActionPerformed
-        String usuario = txtEscribirUsuario.getText();
-        String password = txtEscribirContraseña.getText();
-        
-        lgController.procesarIngreso(usuario, password);
-// TODO add your handling code here:
-//        String usuario = txtEscribirUsuario.getText().trim();
-//        String contrasena = txtEscribirContraseña.getText().trim();
-//
-//        System.out.println("Usuario: " + usuario);
-//        System.out.println("Contrasena: " + contrasena);
-//
-//        if (usuario.equals("admin") && contrasena.equals("1234")) {
-//            new menuPrincipal().setVisible(true);
-//            this.dispose();
-//        } else {
-//            JOptionPane.showMessageDialog(this,
-//                "Usuario o contraseña incorrectos",
-//                "Error de acceso",
-//                JOptionPane.ERROR_MESSAGE);
-//        }
+        String usuario  = txtEscribirUsuario.getText().trim();
+        String password = txtEscribirContraseña.getText().trim();
+        lgController.procesarIngreso(usuario, password, this);
     }//GEN-LAST:event_btnIngresarSistemaActionPerformed
 
     private void txtEscribirContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEscribirContraseñaActionPerformed

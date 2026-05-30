@@ -67,8 +67,85 @@ private void configurarComponentes() {
     jcbSeleccionarAño.setBackground(new java.awt.Color(240, 248, 230));
     jcbSeleccionarAño.setForeground(new java.awt.Color(50, 100, 20));
 
-    // ── CAMPO MONTO CON ÍCONO CANDADO ──
-    txtCantidadCuota.setText("  \uD83D\uDD12  Q 1,500.00");
+    // ── CAMPO MONTO — cargar desde BD ──
+    cargarMontoCuota();
+
+    // ── BOTÓN GUARDAR (es un JLabel) — conectar al controlador ──
+    btnGuardar.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.HAND_CURSOR));
+    btnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
+        @Override public void mouseClicked(java.awt.event.MouseEvent evt) { guardarPago(); }
+        @Override public void mouseEntered(java.awt.event.MouseEvent evt) {
+            btnGuardar.setBackground(new java.awt.Color(0, 90, 0));
+        }
+        @Override public void mouseExited(java.awt.event.MouseEvent evt) {
+            btnGuardar.setBackground(new java.awt.Color(58, 122, 26));
+        }
+    });
+
+    // ── BOTÓN LIMPIAR — limpiar formulario ──
+    btnCancelar.setText("Limpiar");
+    btnCancelar.addActionListener(evt -> limpiarFormulario());
+}
+
+private void cargarMontoCuota() {
+    try {
+        double cuota = new DAO.ConfiguracionCuotaDAO().obtenerCuotaActual();
+        txtCantidadCuota.setText(String.format("  Q %,.2f", cuota));
+    } catch (Exception e) {
+        txtCantidadCuota.setText("  Q 1,500.00");
+    }
+}
+
+private void guardarPago() {
+    int casaIdx = jcbSeleccionarCasa.getSelectedIndex();
+    if (casaIdx <= 0) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Seleccione un número de casa.", "Validación",
+            javax.swing.JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+    int mesIdx = jcbSeleccionarMes.getSelectedIndex();
+    if (mesIdx <= 0) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Seleccione el mes.", "Validación",
+            javax.swing.JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+    String anioStr = (String) jcbSeleccionarAño.getSelectedItem();
+    if (anioStr == null || anioStr.startsWith("Seleccionar")) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Seleccione el año.", "Validación",
+            javax.swing.JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    int numeroCasa = casaIdx;
+    int mes        = mesIdx;
+    int anio       = Integer.parseInt(anioStr);
+
+    logic.PagoController pagoCtrl = new logic.PagoController();
+    boolean ok = pagoCtrl.registrar(numeroCasa, mes, anio);
+
+    if (ok) {
+        DAO.PropietarioDAO propDAO = new DAO.PropietarioDAO();
+        model.PropietarioModel prop = propDAO.buscarPorCasa(numeroCasa);
+        String propietario = (prop != null) ? prop.getNombreCompleto() : "Sin propietario";
+        double cuota = new DAO.ConfiguracionCuotaDAO().obtenerCuotaActual();
+
+        int resp = javax.swing.JOptionPane.showConfirmDialog(this,
+            "Pago registrado correctamente. ¿Desea generar el voucher de pago en PDF?",
+            "Voucher de Pago", javax.swing.JOptionPane.YES_NO_OPTION);
+        if (resp == javax.swing.JOptionPane.YES_OPTION) {
+            logic.ReportGenerator.generarVoucherPago(numeroCasa, mes, anio, cuota, propietario, this);
+        }
+        limpiarFormulario();
+    }
+}
+
+private void limpiarFormulario() {
+    jcbSeleccionarCasa.setSelectedIndex(0);
+    jcbSeleccionarMes.setSelectedIndex(0);
+    jcbSeleccionarAño.setSelectedIndex(0);
 }
 
 
