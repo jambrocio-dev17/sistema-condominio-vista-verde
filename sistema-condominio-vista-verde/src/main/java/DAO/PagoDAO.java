@@ -23,24 +23,24 @@ public class PagoDAO {
         String sql = "INSERT INTO Pago (numero_casa, mes, anio, monto, estado) "
                    + "VALUES (?, ?, ?, ?, ?)";
                    
-//        // 1. Obtenemos la conexión fuera del try
-//        Connection con = Conexion.getInstance().getConnection();
-//        
-//        // 2. Solo el PreparedStatement va dentro
-//        try (PreparedStatement ps = con.prepareStatement(sql)) {
-//            ps.setInt(1, p.getNumeroCasa());
-//            ps.setInt(2, p.getMes());
-//            ps.setInt(3, p.getAnio());
-//            ps.setDouble(4, p.getMonto());
-//            ps.setString(5, p.getEstado());
-//            
-//            ps.executeUpdate();
-//            return true;
-//        } catch (SQLException e) {
-//            System.err.println("Error al registrar pago: " + e.getMessage());
-//            return false;
-//        }
-//    }
+        // 1. Obtenemos la conexión fuera del try
+        Connection con = Conexion.getInstance().getConnection();
+        
+        // 2. Solo el PreparedStatement va dentro
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, p.getNumeroCasa());
+            ps.setInt(2, p.getMes());
+            ps.setInt(3, p.getAnio());
+            ps.setDouble(4, p.getMonto());
+            ps.setString(5, p.getEstado());
+            
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.err.println("Error al registrar pago: " + e.getMessage());
+            return false;
+        }
+    }
 
     public ArrayList<PagoModel> listar() {
         ArrayList<PagoModel> lista = new ArrayList<>();
