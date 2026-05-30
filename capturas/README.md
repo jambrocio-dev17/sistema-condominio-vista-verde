@@ -82,7 +82,7 @@ git clone https://github.com/jambrocio-dev17/sistema-condominio-vista-verde.git
 
 ## 📋 Tablero de Jira
 
-🔗 [Ver tablero del proyecto en Jira](https://umg-proyectofinal-p1.atlassian.net/jira/software/projects/SCRUM/boards/1?atlOrigin=eyJpIjoiOTYzMjdmNDUxYjBmNDljMzgwZGM3Nzc4NzVmZDE5MzUiLCJwIjoiaiJ9)
+🔗 [Ver tablero del proyecto en Jira](https://umg-proyectofinal-p1.atlassian.net/jira/software/projects/SCRUM/code?atlOrigin=eyJpIjoiOWFjYjBlN2UyM2NmNDkyN2FiYmIxOTNlZjllNGMwYTciLCJwIjoiaiJ9)
 
 ---
 

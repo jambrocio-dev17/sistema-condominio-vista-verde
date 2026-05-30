@@ -1,0 +1,444 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
+package ui;
+
+/**
+ *
+ * @author Josue Ambrocio
+ */
+public class ConfiguracionCuota extends javax.swing.JFrame {
+    
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ConfiguracionCuota.class.getName());
+
+    /**
+     * Creates new form Vistas
+     */
+    public ConfiguracionCuota() {
+        initComponents();
+        setTitle("Sistema Vista Verde — Configuración de Cuota");
+        getContentPane().setBackground(new java.awt.Color(26, 58, 10));
+        setLocationRelativeTo(null);
+        configurarBoton();
+        configurarCampoMonto();
+    }
+
+    private void configurarBoton() {
+        btnVolverInicio.setBackground(new java.awt.Color(143, 204, 111));
+        btnVolverInicio.setForeground(new java.awt.Color(0, 0, 0));
+        btnVolverInicio.setOpaque(true);
+        btnVolverInicio.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVolverInicio.setBackground(new java.awt.Color(0, 0, 0));
+                btnVolverInicio.setForeground(new java.awt.Color(255, 255, 255));
+            }
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVolverInicio.setBackground(new java.awt.Color(143, 204, 111));
+                btnVolverInicio.setForeground(new java.awt.Color(0, 0, 0));
+            }
+        });
+
+        // ── Cargar cuota actual desde BD ──
+        DAO.ConfiguracionCuotaDAO dao = new DAO.ConfiguracionCuotaDAO();
+        float cuotaInicial = dao.obtenerCuotaActual();
+        lblMontoCuotaActual.setText(String.format("Q %,.2f", cuotaInicial));
+        txtMontoRecaudacion.setText(String.format("Q %,.2f", cuotaInicial * 30));
+
+        // ── Recalcular recaudación mientras el usuario escribe ──
+        txtMontoMensual.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+            private void actualizar() {
+                javax.swing.SwingUtilities.invokeLater(() -> {
+                    try {
+                        String texto = txtMontoMensual.getText().replaceAll("[^0-9.]", "");
+                        double monto = texto.isEmpty() ? 0 : Double.parseDouble(texto);
+                        txtMontoRecaudacion.setText(String.format("Q %,.2f", monto * 30));
+                    } catch (NumberFormatException ignored) {
+                        txtMontoRecaudacion.setText("Q 0.00");
+                    }
+                });
+            }
+            @Override public void insertUpdate(javax.swing.event.DocumentEvent e)  { actualizar(); }
+            @Override public void removeUpdate(javax.swing.event.DocumentEvent e)  { actualizar(); }
+            @Override public void changedUpdate(javax.swing.event.DocumentEvent e) { actualizar(); }
+        });
+
+        // ── Botón GUARDAR ──
+        tbnGuardar.addActionListener(e -> {
+            String texto = txtMontoMensual.getText().replaceAll("[^0-9.]", "").trim();
+            if (texto.isEmpty()) {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                    "Ingrese un monto válido.", "Validación",
+                    javax.swing.JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            try {
+                float nuevoMonto = Float.parseFloat(texto);
+                if (nuevoMonto <= 0) {
+                    javax.swing.JOptionPane.showMessageDialog(this,
+                        "El monto debe ser mayor a cero.", "Validación",
+                        javax.swing.JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+                model.ConfiguracionCuotaModel modelo = new model.ConfiguracionCuotaModel(1, nuevoMonto);
+                boolean ok = dao.actualizar(modelo);
+                if (ok) {
+                    javax.swing.JOptionPane.showMessageDialog(this,
+                        "¡Cuota actualizada correctamente a Q " + String.format("%,.2f", nuevoMonto) + "!",
+                        "Éxito", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                    lblMontoCuotaActual.setText(String.format("Q %,.2f", nuevoMonto));
+                    txtMontoMensual.setText(" Q  0.00");
+                    txtMontoRecaudacion.setText(String.format("Q %,.2f", nuevoMonto * 30));
+                } else {
+                    javax.swing.JOptionPane.showMessageDialog(this,
+                        "Error al actualizar la cuota. Intente nuevamente.",
+                        "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (NumberFormatException ex) {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                    "El monto ingresado no es válido.", "Error",
+                    javax.swing.JOptionPane.WARNING_MESSAGE);
+            }
+        });
+
+        // ── Botón LIMPIAR ──
+        tbnCancelar.setText("Limpiar");
+        tbnCancelar.addActionListener(e -> {
+            txtMontoMensual.setText(" Q  0.00");
+            float cuotaActual = dao.obtenerCuotaActual();
+            txtMontoRecaudacion.setText(String.format("Q %,.2f", cuotaActual * 30));
+        });
+    }
+    
+    private void configurarCampoMonto() {
+        ((javax.swing.text.AbstractDocument) txtMontoMensual.getDocument())
+            .setDocumentFilter(new javax.swing.text.DocumentFilter() {
+                @Override
+                public void insertString(FilterBypass fb, int offset, String string,
+                        javax.swing.text.AttributeSet attr) throws javax.swing.text.BadLocationException {
+                    if (string.matches("[0-9.]*"))
+                        super.insertString(fb, offset, string, attr);
+                }
+                @Override
+                public void replace(FilterBypass fb, int offset, int length, String text,
+                        javax.swing.text.AttributeSet attrs) throws javax.swing.text.BadLocationException {
+                    if (text.matches("[0-9.]*"))
+                        super.replace(fb, offset, length, text, attrs);
+                }
+            });
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanel4 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        lblConfiguracionCuota = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        lblCuotaActual = new javax.swing.JLabel();
+        lblMontoCuotaActual = new javax.swing.JLabel();
+        lblVigente = new javax.swing.JLabel();
+        lblActualizarMonto = new javax.swing.JLabel();
+        lblNuevoMontoCuota = new javax.swing.JLabel();
+        txtMontoMensual = new javax.swing.JTextField();
+        lblRecaudacion = new javax.swing.JLabel();
+        txtMontoRecaudacion = new javax.swing.JTextField();
+        tbnCancelar = new javax.swing.JButton();
+        tbnGuardar = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        btnVolverInicio = new javax.swing.JButton();
+        lblInicioConfiCuota = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel4.setBackground(new java.awt.Color(240, 255, 234));
+        jPanel4.setForeground(new java.awt.Color(58, 122, 26));
+        jPanel4.setPreferredSize(new java.awt.Dimension(760, 510));
+
+        jPanel1.setBackground(new java.awt.Color(45, 90, 30));
+
+        lblConfiguracionCuota.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        lblConfiguracionCuota.setText("<html><b style='color:white; font-size:11px;'>Configuración de Cuota</b><br><span style='color:#8fcc6f; font-size:9px;'>Condominio Vista Verde</span></html>");
+
+        jPanel2.setBackground(new java.awt.Color(26, 58, 10));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblConfiguracionCuota, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblConfiguracionCuota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 14, Short.MAX_VALUE))
+        );
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(58, 122, 26)));
+
+        jPanel5.setBackground(new java.awt.Color(45, 90, 30));
+        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(58, 122, 26)));
+
+        lblCuotaActual.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
+        lblCuotaActual.setForeground(new java.awt.Color(143, 204, 111));
+        lblCuotaActual.setText("Cuota de mantenimiento actual");
+
+        lblMontoCuotaActual.setFont(new java.awt.Font("SansSerif", 0, 22)); // NOI18N
+        lblMontoCuotaActual.setForeground(new java.awt.Color(255, 255, 255));
+        lblMontoCuotaActual.setText("Q 1,500.00 ");
+
+        lblVigente.setBackground(new java.awt.Color(240, 255, 234));
+        lblVigente.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        lblVigente.setForeground(new java.awt.Color(255, 255, 255));
+        lblVigente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblVigente.setText("Vigente");
+        lblVigente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(143, 204, 111)));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCuotaActual, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMontoCuotaActual, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 320, Short.MAX_VALUE)
+                .addComponent(lblVigente, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblCuotaActual)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblMontoCuotaActual, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(lblVigente)))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        lblActualizarMonto.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
+        lblActualizarMonto.setForeground(new java.awt.Color(58, 122, 26));
+        lblActualizarMonto.setText("ACTUALIZAR MONTO");
+
+        lblNuevoMontoCuota.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
+        lblNuevoMontoCuota.setText("Nuevo monto de cuota mensual\n");
+
+        txtMontoMensual.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        txtMontoMensual.setText(" Q  0.00");
+        txtMontoMensual.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(160, 200, 120)));
+
+        lblRecaudacion.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
+        lblRecaudacion.setText("Recaudación mensual esperada con nuevo monto");
+
+        txtMontoRecaudacion.setEditable(false);
+        txtMontoRecaudacion.setBackground(new java.awt.Color(240, 248, 230));
+        txtMontoRecaudacion.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        txtMontoRecaudacion.setText("Q  0.00");
+        txtMontoRecaudacion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(160, 200, 120)));
+
+        tbnCancelar.setBackground(new java.awt.Color(232, 232, 232));
+        tbnCancelar.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        tbnCancelar.setForeground(new java.awt.Color(80, 80, 80));
+        tbnCancelar.setText("Cancelar");
+
+        tbnGuardar.setBackground(new java.awt.Color(58, 122, 26));
+        tbnGuardar.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        tbnGuardar.setForeground(new java.awt.Color(255, 255, 255));
+        tbnGuardar.setText("Guardar");
+        tbnGuardar.setOpaque(true);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtMontoMensual)
+                    .addComponent(txtMontoRecaudacion)
+                    .addComponent(jSeparator2)
+                    .addComponent(lblNuevoMontoCuota, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblActualizarMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblRecaudacion, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(198, Short.MAX_VALUE)
+                .addComponent(tbnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(101, 101, 101)
+                .addComponent(tbnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(189, 189, 189))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(lblActualizarMonto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(lblNuevoMontoCuota)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtMontoMensual, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addComponent(lblRecaudacion)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtMontoRecaudacion, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(128, 128, 128))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tbnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tbnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(42, 42, 42))))
+        );
+
+        btnVolverInicio.setBackground(new java.awt.Color(0, 0, 0));
+        btnVolverInicio.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        btnVolverInicio.setForeground(new java.awt.Color(255, 255, 255));
+        btnVolverInicio.setText("← Volver al Inicio");
+        btnVolverInicio.addActionListener(this::btnVolverInicioActionPerformed);
+
+        lblInicioConfiCuota.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        lblInicioConfiCuota.setText("<html>Inicio › <b>Configurar Cuota</b></html>");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(btnVolverInicio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblInicioConfiCuota, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblInicioConfiCuota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVolverInicio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(752, 752, 752))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void btnVolverInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverInicioActionPerformed
+        // TODO add your handling code here:
+        new menuPrincipal().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnVolverInicioActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(() -> new ConfiguracionCuota().setVisible(true));
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnVolverInicio;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lblActualizarMonto;
+    private javax.swing.JLabel lblConfiguracionCuota;
+    private javax.swing.JLabel lblCuotaActual;
+    private javax.swing.JLabel lblInicioConfiCuota;
+    private javax.swing.JLabel lblMontoCuotaActual;
+    private javax.swing.JLabel lblNuevoMontoCuota;
+    private javax.swing.JLabel lblRecaudacion;
+    private javax.swing.JLabel lblVigente;
+    private javax.swing.JButton tbnCancelar;
+    private javax.swing.JButton tbnGuardar;
+    private javax.swing.JTextField txtMontoMensual;
+    private javax.swing.JTextField txtMontoRecaudacion;
+    // End of variables declaration//GEN-END:variables
+   
+}
