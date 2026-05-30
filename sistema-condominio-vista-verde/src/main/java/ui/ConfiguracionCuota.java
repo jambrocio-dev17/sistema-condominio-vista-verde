@@ -40,6 +40,76 @@ public class ConfiguracionCuota extends javax.swing.JFrame {
                 btnVolverInicio.setForeground(new java.awt.Color(0, 0, 0));
             }
         });
+
+        // ── Cargar cuota actual desde BD ──
+        DAO.ConfiguracionCuotaDAO dao = new DAO.ConfiguracionCuotaDAO();
+        float cuotaInicial = dao.obtenerCuotaActual();
+        lblMontoCuotaActual.setText(String.format("Q %,.2f", cuotaInicial));
+        txtMontoRecaudacion.setText(String.format("Q %,.2f", cuotaInicial * 30));
+
+        // ── Recalcular recaudación mientras el usuario escribe ──
+        txtMontoMensual.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+            private void actualizar() {
+                javax.swing.SwingUtilities.invokeLater(() -> {
+                    try {
+                        String texto = txtMontoMensual.getText().replaceAll("[^0-9.]", "");
+                        double monto = texto.isEmpty() ? 0 : Double.parseDouble(texto);
+                        txtMontoRecaudacion.setText(String.format("Q %,.2f", monto * 30));
+                    } catch (NumberFormatException ignored) {
+                        txtMontoRecaudacion.setText("Q 0.00");
+                    }
+                });
+            }
+            @Override public void insertUpdate(javax.swing.event.DocumentEvent e)  { actualizar(); }
+            @Override public void removeUpdate(javax.swing.event.DocumentEvent e)  { actualizar(); }
+            @Override public void changedUpdate(javax.swing.event.DocumentEvent e) { actualizar(); }
+        });
+
+        // ── Botón GUARDAR ──
+        tbnGuardar.addActionListener(e -> {
+            String texto = txtMontoMensual.getText().replaceAll("[^0-9.]", "").trim();
+            if (texto.isEmpty()) {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                    "Ingrese un monto válido.", "Validación",
+                    javax.swing.JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            try {
+                float nuevoMonto = Float.parseFloat(texto);
+                if (nuevoMonto <= 0) {
+                    javax.swing.JOptionPane.showMessageDialog(this,
+                        "El monto debe ser mayor a cero.", "Validación",
+                        javax.swing.JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+                model.ConfiguracionCuotaModel modelo = new model.ConfiguracionCuotaModel(1, nuevoMonto);
+                boolean ok = dao.actualizar(modelo);
+                if (ok) {
+                    javax.swing.JOptionPane.showMessageDialog(this,
+                        "¡Cuota actualizada correctamente a Q " + String.format("%,.2f", nuevoMonto) + "!",
+                        "Éxito", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                    lblMontoCuotaActual.setText(String.format("Q %,.2f", nuevoMonto));
+                    txtMontoMensual.setText(" Q  0.00");
+                    txtMontoRecaudacion.setText(String.format("Q %,.2f", nuevoMonto * 30));
+                } else {
+                    javax.swing.JOptionPane.showMessageDialog(this,
+                        "Error al actualizar la cuota. Intente nuevamente.",
+                        "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (NumberFormatException ex) {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                    "El monto ingresado no es válido.", "Error",
+                    javax.swing.JOptionPane.WARNING_MESSAGE);
+            }
+        });
+
+        // ── Botón LIMPIAR ──
+        tbnCancelar.setText("Limpiar");
+        tbnCancelar.addActionListener(e -> {
+            txtMontoMensual.setText(" Q  0.00");
+            float cuotaActual = dao.obtenerCuotaActual();
+            txtMontoRecaudacion.setText(String.format("Q %,.2f", cuotaActual * 30));
+        });
     }
     
     private void configurarCampoMonto() {

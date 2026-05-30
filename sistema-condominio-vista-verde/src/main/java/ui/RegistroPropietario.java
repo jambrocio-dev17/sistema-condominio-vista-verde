@@ -153,6 +153,7 @@ public class RegistroPropietario extends javax.swing.JFrame {
         btnGuardar.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(this::btnGuardarActionPerformed);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -305,6 +306,10 @@ public class RegistroPropietario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEscribirDpiActionPerformed
 
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
     private void configurarCampos() {
         String[] casas = new String[30];
         for (int i = 0; i < 30; i++) casas[i] = "Casa " + (i + 1);
@@ -358,6 +363,7 @@ public class RegistroPropietario extends javax.swing.JFrame {
             }
         });
 
+        btnCancelar.setText("Limpiar");
         btnCancelar.addActionListener(e -> limpiarCampos());
     }
 

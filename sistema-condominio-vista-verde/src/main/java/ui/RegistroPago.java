@@ -82,7 +82,8 @@ private void configurarComponentes() {
         }
     });
 
-    // ── BOTÓN CANCELAR — limpiar formulario ──
+    // ── BOTÓN LIMPIAR — limpiar formulario ──
+    btnCancelar.setText("Limpiar");
     btnCancelar.addActionListener(evt -> limpiarFormulario());
 }
 

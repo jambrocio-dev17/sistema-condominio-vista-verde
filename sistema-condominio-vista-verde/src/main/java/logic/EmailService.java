@@ -1,7 +1,15 @@
 package logic;
 
-import jakarta.mail.*;
-import jakarta.mail.internet.*;
+import jakarta.mail.Authenticator;
+import jakarta.mail.Message;
+import jakarta.mail.Multipart;
+import jakarta.mail.PasswordAuthentication;
+import jakarta.mail.Session;
+import jakarta.mail.Transport;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeBodyPart;
+import jakarta.mail.internet.MimeMessage;
+import jakarta.mail.internet.MimeMultipart;
 import java.util.Hashtable;
 import java.util.Properties;
 import javax.naming.NamingException;
@@ -101,21 +109,98 @@ public class EmailService {
                 msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(destinatario));
                 msg.setSubject("Confirmación de Pago — " + meses[mes] + " " + anio);
 
-                String cuerpo = String.format(
-                    "Estimado/a %s,%n%n"
-                    + "Su pago ha sido registrado exitosamente en el sistema.%n%n"
-                    + "Detalles del pago:%n"
-                    + "  - Casa N°    : %d%n"
-                    + "  - Período    : %s %d%n"
-                    + "  - Monto      : Q %.2f%n%n"
-                    + "Gracias por su pago puntual.%n%n"
-                    + "Atentamente,%n"
-                    + "Administración%n"
-                    + "Condominio Vista Verde",
-                    nombrePropietario, numeroCasa, meses[mes], anio, monto
+                String htmlCuerpo = String.format("""
+                    <!DOCTYPE html>
+                    <html lang="es">
+                    <head>
+                      <meta charset="UTF-8">
+                      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                      <style>
+                        body { margin:0; padding:0; background-color:#f0ffea; font-family:Arial,Helvetica,sans-serif; }
+                        .wrapper { padding:30px 15px; background-color:#f0ffea; }
+                        .container { max-width:600px; margin:0 auto; background:#ffffff; border-radius:10px; overflow:hidden; box-shadow:0 4px 18px rgba(26,58,10,0.15); }
+                        .header { background-color:#1a3a0a; padding:32px 40px; text-align:center; }
+                        .header-icon { width:54px; height:54px; background:#2d5a1e; border-radius:50%%; display:inline-flex; align-items:center; justify-content:center; margin-bottom:14px; }
+                        .header h1 { color:#8fcc6f; margin:0 0 6px; font-size:22px; letter-spacing:1px; }
+                        .header p { color:#a8d888; margin:0; font-size:13px; }
+                        .ribbon { background:linear-gradient(90deg,#3a7a1a,#8fcc6f,#3a7a1a); height:5px; }
+                        .body { padding:32px 40px; }
+                        .greeting { color:#1a3a0a; font-size:16px; margin:0 0 14px; }
+                        .intro { color:#555; font-size:14px; line-height:1.65; margin:0 0 26px; }
+                        .amount-badge { background:#eaf6e0; border:2px solid #3a7a1a; border-radius:10px; padding:22px 20px; text-align:center; margin-bottom:26px; }
+                        .amount-badge .label { color:#5a7a45; font-size:12px; text-transform:uppercase; letter-spacing:1px; margin:0 0 6px; }
+                        .amount-badge .amount { font-size:40px; font-weight:bold; color:#1a3a0a; margin:0 0 10px; }
+                        .status-pill { background:#3a7a1a; color:#ffffff; font-size:13px; font-weight:bold; padding:5px 22px; border-radius:20px; display:inline-block; letter-spacing:1px; }
+                        .details-table { width:100%%; border-collapse:collapse; margin-bottom:26px; border-radius:8px; overflow:hidden; border:1px solid #dff0d0; }
+                        .details-table td { padding:11px 16px; font-size:14px; border-bottom:1px solid #e8f5dc; }
+                        .details-table tr:last-child td { border-bottom:none; }
+                        .details-table td.key { color:#3a7a1a; font-weight:bold; width:38%%; background:#f4fbee; }
+                        .details-table td.val { color:#222; }
+                        .closing { color:#555; font-size:13px; line-height:1.65; margin:0 0 10px; }
+                        .footer { background:#1a3a0a; color:#8fcc6f; text-align:center; padding:22px 40px; font-size:12px; line-height:1.7; }
+                        .footer strong { color:#ffffff; font-size:13px; }
+                        .footer .divider { color:#2d5a1e; margin:8px 0; }
+                      </style>
+                    </head>
+                    <body>
+                      <div class="wrapper">
+                        <div class="container">
+                          <div class="header">
+                            <div class="header-icon">
+                              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2L3 7v10l9 5 9-5V7L12 2z" stroke="#8fcc6f" stroke-width="1.8" fill="none"/>
+                                <path d="M12 7v5M12 15h.01" stroke="#8fcc6f" stroke-width="1.8" stroke-linecap="round"/>
+                              </svg>
+                            </div>
+                            <h1>Condominio Vista Verde</h1>
+                            <p>Sistema de Administración de Cuotas</p>
+                          </div>
+                          <div class="ribbon"></div>
+                          <div class="body">
+                            <p class="greeting">Estimado/a <strong>%s</strong>,</p>
+                            <p class="intro">
+                              Nos complace informarle que su pago de cuota mensual ha sido
+                              registrado exitosamente en nuestro sistema. A continuación encontrará
+                              el resumen de su transacción.
+                            </p>
+                            <div class="amount-badge">
+                              <p class="label">Monto pagado</p>
+                              <p class="amount">Q %,.2f</p>
+                              <span class="status-pill">&#10003;&nbsp; PAGADO</span>
+                            </div>
+                            <table class="details-table">
+                              <tr><td class="key">N.° de Casa</td><td class="val">Casa %d</td></tr>
+                              <tr><td class="key">Período</td><td class="val">%s %d</td></tr>
+                              <tr><td class="key">Concepto</td><td class="val">Cuota de mantenimiento</td></tr>
+                              <tr><td class="key">Estado</td><td class="val" style="color:#3a7a1a;font-weight:bold;">Pagado</td></tr>
+                            </table>
+                            <p class="closing">
+                              Agradecemos su puntualidad. Si tiene alguna consulta sobre este comprobante,
+                              comuníquese directamente con la administración del condominio.
+                            </p>
+                          </div>
+                          <div class="footer">
+                            <strong>Condominio Vista Verde</strong>
+                            <div class="divider">&#9135;&#9135;&#9135;&#9135;&#9135;&#9135;&#9135;&#9135;&#9135;</div>
+                            Administración &bull; Sistema de Cuotas<br>
+                            <span style="color:#6faa55;font-size:11px;">
+                              Este es un mensaje automático, por favor no responda a este correo.
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </body>
+                    </html>
+                    """,
+                    nombrePropietario, monto, numeroCasa, meses[mes], anio
                 );
 
-                msg.setText(cuerpo, "UTF-8");
+                MimeBodyPart htmlPart = new MimeBodyPart();
+                htmlPart.setContent(htmlCuerpo, "text/html; charset=UTF-8");
+                Multipart multipart = new MimeMultipart();
+                multipart.addBodyPart(htmlPart);
+                msg.setContent(multipart);
+
                 Transport.send(msg);
                 System.out.println("Correo de confirmación enviado a: " + destinatario);
             } catch (Exception e) {
