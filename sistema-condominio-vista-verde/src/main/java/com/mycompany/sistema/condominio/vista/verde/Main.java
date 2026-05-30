@@ -8,7 +8,7 @@ import ui.Login;
  *
  * @author Josue Ambrocio
  */
-public class SistemaCondominioVistaVerde {
+public class Main {
 
     public static void main(String[] args) {
         logic.ThemeManager.aplicarTema();
